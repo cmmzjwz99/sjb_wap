@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微信充值</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="css/chongzhi.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class="app" style="max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto">
+<div class="ewm">
+    <div class="tp">
+        <img id="wxewm">
+        <p class="mz" id="mz">名字</p>
+    </div>
+    <div class="saomiao">
+        <p>扫描以上二维码，转账充值。<br />付款后提交订单审核</p>
+    </div>
+</div>
+<div>
+    <ul class="hyzh">
+        <li>会员账号&nbsp;:<input type="text"><hr /></li>
+        <li>转账金额&nbsp;:<input type="text" id="val_balance"><hr /></li>
+        <li>转账账号&nbsp;:<input type="text" id="val_no"><hr /></li>
+    </ul>
+    <div class="an">
+        <input type="button" value="确定" onclick="chongzhi()" class="btn-info btn" style="width: 150px;height: 40px;
+        font-size:20px ">
+    </div>
+</div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+    window.onload = function  wxzf(){
+        $.ajax({
+            url:'/api/payments/get_payments.json',
+            type:'get',
+            success:function (data) {
+                data=data.data
+                if(data.wechat_status==true){
+                    document.getElementById("wxewm").src = data.wechat_url;
+                    var p = document.getElementsByClassName("mz")[0];
+                    p.innerHTML = data.wechat_name;
+                }else{
+                    alert('暂不支持微信支付');
+                    history.go(-1)
+                    return ;
+                }
+            }
+        })
+    }
+    function chongzhi() {
+        $.ajax({
+            url:'/api/payments/order.json',
+            type:'post',
+            data:{payments:{
+                balance:$('#val_balance').val(),
+                category:'微信支付',
+                no:$('#val_no').val()
+            }},
+            success:function (data) {
+                if(data.code==0){
+                    alert('充值成功，请等待审核');
+                    history.go(-1)
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+.jcls{
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid;
+    line-height: 30px;
+}
+
+
+
+table{
+    width: 100%;
+    margin: 40px 0px;
+    padding: 0px;
+}
+
+table tr{
+    border: 1px solid;
+    text-align: center;
+}
+table td{
+    width: 25%;
+    line-height: 30px;
+}

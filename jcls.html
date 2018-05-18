@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>竞猜历史</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/chongzhi.css" rel="stylesheet" type="text/css">
+    <link href="css/jcls.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class="app" style="max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto">
+<div class="jcls">竞猜历史</div>
+<div class="top">
+    <ul class="zhxx">
+        <li style="margin: 15px 0px 0px 10px"><img src="imgs/210705163930538428.png"></li>
+        <li style="margin-left: 10px" id="name_val"></li>
+    </ul>
+    <p class="jinbi">剩余金币:<span id="points_val"></span></p>
+</div>
+<div class="ls">
+    <table id="jclsb" class="biaoge">
+        <tr><td colspan="4" id="sj">时间</td></tr>
+        <tr>
+            <td>比赛</td>
+            <td>下注内容</td>
+            <td>竞猜金币</td>
+            <td>收益</td>
+        </tr>
+    </table>
+</div>
+<div class="foot">
+    <ul class="row">
+        <li class="col-xs-4"><a href="index.html">竞猜</a></li>
+        <li class="col-xs-4">竞猜历史</li>
+        <li class="col-xs-4"><a href="chongzhi.html">充值</a></li>
+    </ul>
+</div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+    window.onload = function(){
+        $.ajax({
+            url:'/api/quiz/my_order.json',
+            type:'get',
+            success:function (data) {
+                data=data.data
+                render(data)
+            }
+        })
+        $.ajax({
+            url:'/api/accounts/info.json',
+            type:'get',
+            success:function (data) {
+                data=data.data
+                $('#points_val').html(data.points)
+                $('#name_val').html(data.login)
+            }
+        })
+    }
+    function render(data) {
+
+        var tbody = document.getElementById('jclsb');
+        var thead = document.getElementById('sj');
+        thead.innerText = data[0].time;
+        for(var i = 0;i < data.length; i++){ //遍历一下json数据
+            if(thead.innerText != data[i].time){
+                var  xdb = document.createElement("table");
+                var col = document.createElement("tr");
+                xdb.appendChild(col);
+
+                var ss = document.createElement("td");
+                ss.innerHTML = data[i].time;
+                col.appendChild(ss);
+                var hp = document.createElement("td");
+                var hp1 = document.createElement("td");
+                var hp2 = document.createElement("td");
+                col.appendChild(hp);
+                col.appendChild(hp1);
+                col.appendChild(hp2);
+                ss.colSpan="4";
+
+
+                var xd = document.createElement("tr");
+                xdb.appendChild(xd);
+
+
+                var bs = document.createElement('td');
+                bs.innerHTML ="比赛";
+                xd.appendChild(bs);
+
+                var zt = document.createElement("td");
+                zt.innerHTML ="下注内容";
+                xd.appendChild(zt);
+
+                var jcjb = document.createElement('td');
+                jcjb.innerHTML ="竞猜金币";
+                xd.appendChild(jcjb);
+
+                var sy = document.createElement('td');
+                sy.innerHTML ="收益";
+                xd.appendChild(sy);
+
+                var ts = getDataRow(data[i]);
+                xdb.appendChild(ts);
+                $(".ls")[0].appendChild(xdb);
+            } else {
+                var trow = getDataRow(data[i]); //定义一个方法,返回tr数据
+                tbody.appendChild(trow);
+            }
+        }
+    }
+
+    function getDataRow(h){
+        var row = document.createElement('tr'); //创建行
+
+        var idCell = document.createElement('td'); //创建第一列id
+        idCell.innerHTML = h.match; //填充数据
+        row.appendChild(idCell); //加入行  ，下面类似
+
+        var nameCell = document.createElement('td');//创建第二列name
+        nameCell.innerHTML = h.team;
+        row.appendChild(nameCell);
+
+        var jobCell = document.createElement('td');//创建第三列job
+        jobCell.innerHTML = h.point;
+        row.appendChild(jobCell);
+
+        var disilie = document.createElement('td')
+        disilie.innerHTML = h.get_point;
+        row.appendChild(disilie)
+
+        return  row;
+    }
+</script>
+</body>
+</html>

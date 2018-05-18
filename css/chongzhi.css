@@ -1,0 +1,127 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    height:100%;
+    width: 100%;
+    background: #F0F0F0;
+}
+ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+a{
+    color: #050407;
+    list-style: none;
+    text-decoration:none;
+}
+a:hover{
+    color: #313cff;
+    list-style: none;
+    text-decoration:none
+}
+.top{
+    width: 100%;
+    background: #58BDC7;
+    overflow:hidden;
+    color: #f0ffff;
+    text-align: center;
+}
+.top img{
+    width: 40%;
+}
+.zhxx{
+    float: left;
+    width: 50%;
+    line-height: 80px;
+}
+.jinbi{
+    float: left;
+    width: 50%;
+    font-size: 20px;
+    text-align: center;
+    line-height: 160px;
+}
+#zhifu{
+    margin: 50px 0px;
+}
+.zffs{
+    background-color: azure;
+    line-height: 30px;
+}
+.zffs li{
+    padding-left: 10px;
+}
+.zffs li span{
+    position:absolute;
+    right: 0px;
+}
+.foot{
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    line-height: 30px;
+    background-color: azure;
+}
+.foot ul{
+    margin: 0px;
+}
+.foot li {
+    border-width: 1px 1px 0px 0px;
+    border-style: solid;
+}
+
+
+
+.ewm{
+    height: 100%;
+    width: 100%;
+    background: #F5F5F5;
+}
+.tp{
+    padding: 10px;
+    text-align: center;
+}
+.mz{
+    padding-top: 10px;
+}
+.saomiao{
+    width: 80%;
+    padding: 20px 0px;
+    margin: 20px 10%;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    background:#ccff66;
+}
+.hyzh{
+    width: 95%;
+    margin: 50px auto;
+}
+.hyzh input{
+    outline:none;
+    border: 0px;
+    width: 80%;
+}
+.hyzh hr{
+    margin: 10px 0px;
+    border-top: 1px solid #0f0f0f;
+}
+.an{
+    margin: 60px 0px;
+    text-align: center;
+}
+
+
+.bg{
+    text-align: center;
+    padding-top: 43px;
+}
+.bg li{
+    border:1px solid black;
+    margin-top:-1px;
+    margin-left:-1px;
+    line-height: 60px;
+}
