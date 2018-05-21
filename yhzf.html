@@ -66,10 +66,7 @@
             alert('充值金额不能大于100000');
             return ;
         }
-        if(!isNaN($('#val_balance').val())){
-//            alert('充值金额需大于0');
-            return true;
-        }else{
+        if(isNaN($('#val_balance').val())){
             alert('请输入数字');
             return false;
         }
