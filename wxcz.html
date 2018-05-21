@@ -21,7 +21,7 @@
 </div>
 <div>
     <ul class="hyzh">
-        <li>会员账号&nbsp;:<input type="text"><hr /></li>
+        <li>会员账号&nbsp;:<input type="text" id="val_login"><hr /></li>
         <li>转账金额&nbsp;:<input type="text" id="val_balance"><hr /></li>
         <li>转账账号&nbsp;:<input type="text" id="val_no"><hr /></li>
     </ul>
@@ -53,6 +53,29 @@
         })
     }
     function chongzhi() {
+        if ($('#val_balance').val() <= 0){
+            alert('充值金额需大于0');
+            return ;
+        } else if ($('#val_balance').val() > 100000){
+            alert('充值金额不能大于100000');
+            return ;
+        }
+        if(!isNaN($('#val_balance').val())){
+//            alert('充值金额需大于0');
+            return true;
+        }else{
+            alert('请输入数字');
+            return false;
+        }
+        if ($('#val_login').val().length == 0){
+            alert('请输入会员账号');
+            return ;
+        }
+        if ($('#val_no').val().length == 0){
+            alert('请输入转账账号');
+            return ;
+        }
+
         $.ajax({
             url:'/api/payments/order.json',
             type:'post',
