@@ -61,13 +61,11 @@
             alert('充值金额不能大于100000');
             return ;
         }
-        if(!isNaN($('#val_balance').val())){
-//            alert('充值金额需大于0');
-            return true;
-        }else{
+        if(isNaN($('#val_balance').val())){
             alert('请输入数字');
             return false;
         }
+        
         if ($('#val_login').val().length == 0){
             alert('请输入会员账号');
             return ;
