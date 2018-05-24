@@ -62,7 +62,7 @@
 <script>
     function tx() {
         $.ajax({
-            url:'/api/payments/tixian.json',
+            url:'/api/payments/tixian',
             type:'post',
             data:{payments:{
                 no:$("#txyh").val()+' '+$('#txzh').val()+' '+$('#skxm').val(),
