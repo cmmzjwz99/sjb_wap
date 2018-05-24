@@ -307,7 +307,7 @@
         par['winerid']=winerid
         par['matchname']=matchname
         par['odds']=odds
-        par['odds']=parseFloat($('#match_'+matchid+' .team_'+winerid).html())
+        par['odds']=parseFloat($('#game_'+matchid+' .team_'+winerid).html())
         console.log(par)
         $('#myModalLabel').html(matchname)
         $('#trust').html(winer)
