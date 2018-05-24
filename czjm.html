@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我要充值</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/cz.css" rel="stylesheet" type="text/css">
+    <style>
+
+        .header {
+            position: fixed;
+            z-index: 60;
+            width: 100%;
+            max-width: 700px;
+            height: 35px;
+            top: 0;
+            text-align: center;
+            line-height: 35px;
+            font-size: 17px;
+            margin-right: auto;
+            margin-left: auto;
+            background-color: #2d59df;
+            color: white;
+        }
+        .footer a {
+            color: black;
+        }
+
+        .footer {
+            position: fixed;
+            z-index: 60;
+            width: 100%;
+            max-width: 700px;
+            height: 50px;
+            bottom: 0;
+            background-color: white;
+        }
+
+        .footer .footer_item {
+            float: left;
+            width: 33.3333%
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    我要充值
+</div>
+<div class="btn-group" style="margin-top: 35px">
+    <button class="btn zf" >支付宝</button>
+    <button class="btn wy">网银汇款</button>
+</div>
+<div>
+    <ul class="cztx">
+        <li>选择银行<span>招商银行</span></li>
+        <li>充值金额<input id="val_balance" type="text" placeholder="单次充值最小10元，最大20000元"></li>
+        <li>入款人姓名<input id="val_no" type="text" placeholder="请输入入款人姓名"></li>
+    </ul>
+    <button class="but btn btn-info" onclick="order()">确认充值</button>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/main.js"></script>
+<script>
+    $(".zf").click(function () {
+        $(".zf").css('background-color','#4870E3').css('color','azure');
+        $(".wy").css('background-color','#f0ffff').css('color','#050407');
+        category='支付宝'
+    })
+    $(".wy").click(function () {
+        $(".zf").css('background-color','#f0ffff').css('color','#050407');
+        $(".wy").css('background-color','#4870E3').css('color','azure');
+        category='网银'
+    })
+    var category='支付宝'
+    function order() {
+        $.ajax({
+            url:'/api/payments/order.json',
+            type:'post',
+            data:{payments:{
+                balance:$('#val_balance').val(),
+                no:$('#val_no').val(),
+                category:category
+            }},
+            success:function (data) {
+                if(data.code==0){
+                    window.location.href='czjm2.html?id='+data.data;
+                }else{
+                    alert('data.msg')
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我要充值</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/cz.css" rel="stylesheet" type="text/css">
+    <style>
+
+        .header {
+            position: fixed;
+            z-index: 60;
+            width: 100%;
+            max-width: 700px;
+            height: 35px;
+            top: 0;
+            text-align: center;
+            line-height: 35px;
+            font-size: 17px;
+            margin-right: auto;
+            margin-left: auto;
+            background-color: #2d59df;
+            color: white;
+        }
+        .footer a {
+            color: black;
+        }
+
+        .footer {
+            position: fixed;
+            z-index: 60;
+            width: 100%;
+            max-width: 700px;
+            height: 50px;
+            bottom: 0;
+            background-color: white;
+        }
+
+        .footer .footer_item {
+            float: left;
+            width: 33.3333%
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    我要充值
+</div>
+<div  style="margin-top: 35px">
+    <ul class="cztx">
+        <li>选择银行<span>招商银行</span></li>
+        <li>存款户名<span class="hm"></span></li>
+        <li>收款账号<span class="skzh"></span></li>
+        <li>开户网点<span class="khwd"></span></li>
+        <li>入款人姓名<span class="rkxm"></span></li>
+        <li>充值金额<span class="czje"></span></li>
+    </ul>
+</div>
+<div class="ts">
+    <p>请会员登入手机<span>支付宝</span>，转账给银行卡。</p>
+    <p>如已完成付款，请勿撤销，我们会尽快为您处理。</p>
+</div>
+<div>
+    <!--button class="btn btn-info cx" onclick="cx()">撤销订单</button-->
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/main.js"></script>
+<script>
+    var data = {
+        yh:"招商银行",
+        hm:"张林鹏",
+        skzh:6214833160191162,
+        khwd:6214833160191162,
+        rkxm:"张林鹏",
+        czje:5000
+    }
+    window.onload = function () {
+        $.ajax({
+            url:'/api/payments/info.json?id='+getQueryString('id'),
+            type:'get',
+            success:function (data) {
+                console.log(data)
+                data=data.data
+                document.getElementsByClassName("hm")[0].innerHTML = data.bank_user;
+                document.getElementsByClassName("skzh")[0].innerHTML = data.bank_no;
+                document.getElementsByClassName("khwd")[0].innerHTML = data.bank_no;
+                document.getElementsByClassName("rkxm")[0].innerHTML = data.no;
+                document.getElementsByClassName("czje")[0].innerHTML = data.balance;
+            }
+        })
+    }
+    function cx() {
+        window.location.href='cz.html';
+    }
+    function copy() {
+        var url= $(".hm").innerText;
+    }
+
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+</script>
+</body>
+</html>
