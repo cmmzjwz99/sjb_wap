@@ -19,6 +19,8 @@ $(function () {
                             }
                         }
                     })
+                }else{
+                    window.location.href='login.html'
                 }
             }
             console.log(data)

@@ -13,16 +13,27 @@
     <style>
         input,textarea,select{outline:none;}
         .item .match{
-            width: 100%;
-            border-bottom: 1px solid #c5c5c5;
+            width: 98%;
+            margin: 0 1%;
             overflow:auto;
             text-align: center;
-            box-sizing: border-box
+            box-sizing: border-box;
+            background-color: #4870e3;
+            color: white;
+            border-radius: 17px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .item .grey_wks{
+            background-color: #cccccc;
+        }
+        .item .active{
+            border-radius: 17px 17px 0 0 ;
         }
         .item .match .team{
             float: left;
             width: 25%;
-            height: 120px;
+            height: 110px;
             position: relative
         }
         .item .match .team .view{
@@ -33,101 +44,157 @@
         .item .match .score{
             float: left;
             width: 5%;
-            line-height: 120px;
+            line-height: 110px;
             font-size: 20px
         }
         .item .match .content{
             float: left;
             width: 40%;
-            height: 120px;
+            height: 110px;
             position: relative
         }
         .item .match .content .view{
             position: relative;top: 50%;transform: translateY(-50%);
         }
+        .item .match .content .view .status{
+            width: 100px;
+            line-height: 24px;
+            background-color: #00cc66;
+            border-radius: 40px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .item .match .content .view .red{
+            background-color: #ff0000;
+        }
+        .item .match .content .view .grey{
+            background-color: #797979;
+        }
         .item .game{
-            background-color: #eeeeee;display: none
+            background-color: #ffffff;display: none;
+            width: 98%;
+            margin: 0 1%;
+            border-radius: 0 0 17px 17px;
+            overflow: hidden;
         }
         .item .game .game_item{
-            position: relative;width: 100%;text-align: center;border-bottom: 1px solid #c5c5c5;overflow: hidden;
+            position: relative;width: 100%;text-align: center;border-bottom: 1px solid #F2F2F2;overflow: hidden;
+            height: 110px;
         }
         .item .game .game_item .head_name{
-            width: 100%;height: 25px;line-height: 25px;font-size: 18px
+            width: 100%;height: 55px;line-height: 55px;font-size: 15px;padding-top: 12.5px;
+        }
+        .item .game .game_item .head_name .text{
+            background-color: #4870e3;border-radius: 15px;padding: 3px 15px;color: white;
+            height: 24px;
+            line-height: 20px;
+            width: 100px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .item .game .game_item .xiazhu_view{
-            float: left;height: 40px;font-size: 10px;text-align: center;border-top:1px solid #dddddd;border-right:1px solid #dddddd;box-sizing: border-box
+            float: left;height: 40px;font-size: 10px;text-align: center;box-sizing: border-box;width: 50px;
         }
         .item .game .game_item .xiazhu_view .xiazhu_btn{
-            width: 40%;float: left;line-height: 40px;color: red
+            width: 40px;float: left;line-height: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: #669933;
+            color: white;
+            font-size: 15px;
         }
         .header{
             position: fixed;
             z-index: 60;
             width: 100%;
             max-width: 700px;
-            height: 40px;
+            height: 35px;
             top: 0;
-            background-color: white;
             text-align: center;
-            line-height: 40px;
-            box-shadow: 0 1px 2px #c5c5c5;
-            font-size: 20px;
+            line-height: 35px;
+            font-size: 17px;
             margin-right: auto;
             margin-left: auto;
+            background-color: #2d59df;color: white;
         }
         .date{
-            height: 30px;line-height: 30px;padding-left: 10px;border-bottom: 1px solid #c5c5c5;font-size: 18px;box-sizing: border-box
+            height: 30px;line-height: 30px;text-align: center;color: #646464;margin-bottom: -10px;
         }
         .footer a{
             color: black;
+        }
+
+        .footer{
+            position: fixed;
+            z-index: 60;
+            width: 100%;
+            max-width: 700px;
+            height: 50px;
+            bottom: 0;
+            background-color: white;
+        }
+        .footer .footer_item{
+            float:left;width: 33.3333%
         }
     </style>
 
 </head>
 <body>
-<div class="app" style="max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto;padding-top: 40px">
+<div class="app" style="background-color: #f2f2f2;max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto;padding-top: 35px">
 
     <div class="header">
-        世界杯
+        娱乐平台
     </div>
     <div id="main_data" style="padding-bottom: 60px">
     </div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display: none" id="show_xiazhu">
-    Launch demo modal
-</button>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display: none" id="show_xiazhu">
+        Launch demo modal
+    </button>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body" style="text-align: center">
-                您选择是：<span id="trust"></span>
-                <div>
-                    <input type="text" id="point_val" placeholder="输入金币" style="border: 1px solid #cbcbcb" onkeyup="value=this.value.replace(/\D+/g,'')">
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="margin-top: 30%">
+        <div class="modal-dialog" role="document" >
+            <div class="modal-content">
+                <div class="modal-header" style="border:0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-align: center;color: #4870e3" id="myModalLabel">Modal title</h4>
                 </div>
-                预计收益：<span id="get_point_val"></span>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" onclick="order()">下注</button>
+                <div class="modal-body" style="text-align: center;padding: 0;font-size: 16px;">
+                    <div style="padding-bottom: 15px">
+                        您选择是：<span id="trust"></span>
+                    </div>
+                    <div>
+                        <input type="text" id="point_val" placeholder="输入金币" style="border: 1px solid #cbcbcb" onkeyup="value=this.value.replace(/\D+/g,'')">
+                    </div>
+                    <div style="margin-top: 15px;font-size: 13px">
+                        预计收益：<span id="get_point_val"></span>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border:0;text-align: center">
+                    <button type="button" class="btn" style="background-color: #4870e3;color: white;width: 30%" onclick="order()">下注</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="footer" style="height: 40px;text-align: center;line-height: 40px">
-    <div style="float:left;width: 33%;border: 1px solid #c5c5c5;box-sizing: border-box">竞猜</div>
-    <a href="jcls.html">
-    <div style="float:left;width: 34%;border: 1px solid #c5c5c5;box-sizing: border-box">竞猜历史</div>
-    </a>
-    <a href="chongzhi.html">
-    <div style="float:left;width: 33%;border: 1px solid #c5c5c5;box-sizing: border-box">充值</div>
-    </a>
-</div>
+    <div class="footer" style="height: 45px;text-align: center;font-size: 10px;">
+        <div class="footer_item">
+            <div><img src="imgs/竞猜1.png" style="width: 25px;margin-top: 3px"></div>
+            <div style="color: #2d59df">竞猜</div>
+        </div>
+        <a href="jcls.html" style="color: #8a8a8a">
+            <div class="footer_item">
+                <div><img src="imgs/竞猜历史1.png" style="width: 25px;margin-top: 3px"></div>
+                <div>竞猜历史</div>
+            </div>
+        </a>
+        <a href="chongzhi.html" style="color: #8a8a8a">
+            <div class="footer_item">
+                <div><img src="imgs/我的筹码1.png" style="width: 25px;margin-top: 3px"></div>
+                <div>我的筹码</div>
+            </div>
+        </a>
+    </div>
 </div>
 
 <script src="js/main.js"></script>
@@ -174,9 +241,11 @@
         var match=$('#match_'+id)
         if(match.attr('data-show')=='false'){
             match.show()
+            $(view).addClass('active')
             match.attr('data-show','true')
         }else{
             match.hide()
+            $(view).removeClass('active')
             match.attr('data-show','false')
         }
     }
@@ -188,13 +257,6 @@
     data=[]
 
     $(function () {
-        $.ajax({
-            url:'/api/accounts/login?user[login]=13868323606&user[password]=123456',
-            type:'post',
-            success:function (data) {
-                console.log(data)
-            }
-        })
         $.ajax({
             url:'/api/quiz/list',
             type:'get',
@@ -279,23 +341,27 @@
         item:function (data) {
             str=''
             if(data.date!=date){
-                str+='<div class="date">'+data.date+'</div>'
+                str+='<div class="date" >'+data.date+'</div>'
                 date=data.date
             }
-            str+='<div class="item"> <div class="match" id="'+data.id+'" onclick="show_item(this)">\
-                <div class="team"> <div class="view"> \
-                <img src="'+guoqi_imgs[data.team1]+'" style="width: 80%;max-width: 80px"> \
-                <div>'+data.team1+'</div> </div> </div><div class="score score1">'+data.score1+'</div> <div class="content">\
-                <div class="view"> <div>'+data.name+'</div> <div>'
-            switch (data.status){
-                case 0:{str+='未开始';break}
-                case 1:{str+='可竞猜';break}
-                case 2:{str+='进行中';break}
-                case 3:{str+='已结束';break}
+            str+='<div class="item"> <div class="match '
+            if(data.status==0){
+                str+='grey_wks'
             }
-            str+='</div> <div>'+data.time+' 开球</div>\
+            str+='" id="'+data.id+'" onclick="show_item(this)">\
+                <div class="team"> <div class="view"> \
+                <img src="'+(guoqi_imgs[data.team1] || 'imgs/zhudui.png')+'" style="width: 60%;max-width: 80px"> \
+                <div>'+data.team1+'</div> </div> </div><div class="score score1">'+data.score1+'</div> <div class="content">\
+                <div class="view"> <div style="line-height: 45px;font-size: 16px">'+data.name+'</div> '
+            switch (data.status){
+                case 0:{str+='<div class="status grey">未开始</div> ';break}
+                case 1:{str+='<div class="status">可竞猜</div> ';break}
+                case 2:{str+='<div class="status red">进行中</div> ';break}
+                case 3:{str+='<div class="status red">已结束</div> ';break}
+            }
+            str+='<div style="font-size: 10px;line-height: 30px">'+data.time+' 开球</div>\
             </div> </div> <div class="score score2">'+data.score2+'</div> <div class="team"> <div class="view">\
-                <img src="'+guoqi_imgs[data.team2]+'" style="width: 80%;max-width: 80px">\
+                <img src="'+(guoqi_imgs[data.team2] || 'imgs/kedui.png')+'" style="width: 60%;max-width: 80px">\
                 <div>'+data.team2+'</div> </div> </div> </div> <div id="match_'+data.id+'" class="game" data-show="false">'
             if(data.games.length>0){
                 for(var j=0;j<data.games.length;j++){
@@ -307,28 +373,28 @@
         },
         game: function (data, status) {
             str = ' <div id="game_' + data.id + '" class="game_item"> '
-            str+=' <div class="head_name">'+data.name+'</div> '
+            str+=' <div class="head_name"><div class="text">'+data.name+'</div></div> '
             if(status==1){
                 if(data.category==3){
                     //3种结果情况
                     str+='<div class="xiazhu_view" style="width: 33.3333%;">\
                     <div style="width: 60%;float: left;line-height: 20px">\
-                    <div>'+data.name1+'</div>\
-                    <div><span class="team_1">'+data.odds1+'</span></div></div>\
+                    <div style="font-size: 15px">'+data.name1+'</div>\
+                    <div style="line-height: 30px">赔率<span class="team_1">'+data.odds1+'</span></div></div>\
                     <div class="xiazhu_btn" \
                     onclick="xiazhu(\''+data.id+'\',\''+data.name1+'\',\''+data.name+'\',1,'+data.odds1+')">\
                     下注 </div> </div>'
                     str+='<div class="xiazhu_view" style="width: 33.3333%;">\
                     <div style="width: 60%;float: left;line-height: 20px">\
-                    <div>'+data.name2+'</div>\
-                    <div><span class="team_2">'+data.odds2+'</span></div></div>\
+                    <div style="font-size: 15px">'+data.name2+'</div>\
+                    <div style="line-height: 30px">赔率<span class="team_2">'+data.odds2+'</span></div></div>\
                     <div class="xiazhu_btn" \
                     onclick="xiazhu(\''+data.id+'\',\''+data.name2+'\',\''+data.name+'\',2,'+data.odds2+')">\
                     下注 </div> </div>'
                     str+='<div class="xiazhu_view" style="width: 33.3333%;">\
                     <div style="width: 60%;float: left;line-height: 20px">\
-                    <div>'+data.name3+'</div>\
-                    <div><span class="team_3">'+data.odds3+'</span></div></div>\
+                    <div style="font-size: 15px">'+data.name3+'</div>\
+                    <div style="line-height: 30px">赔率<span class="team_3">'+data.odds3+'</span></div></div>\
                     <div class="xiazhu_btn" \
                     onclick="xiazhu(\''+data.id+'\',\''+data.name3+'\',\''+data.name+'\',3,'+data.odds3+')">\
                     下注 </div> </div>'
@@ -336,15 +402,15 @@
                     //2种结果情况
                     str+='<div class="xiazhu_view" style="width: 50%;">\
                     <div style="width: 60%;float: left;line-height: 20px">\
-                    <div>'+data.name1+'</div>\
-                    <div><span class="team_1">'+data.odds1+'</span></div></div>\
+                    <div style="font-size: 15px">'+data.name1+'</div>\
+                    <div style="line-height: 30px">赔率<span class="team_1">'+data.odds1+'</span></div></div>\
                     <div class="xiazhu_btn" \
                     onclick="xiazhu(\''+data.id+'\',\''+data.name1+'\',\''+data.name+'\',1,'+data.odds1+')">\
                     下注 </div> </div>'
                     str+='<div class="xiazhu_view" style="width: 50%;">\
                     <div style="width: 60%;float: left;line-height: 20px">\
-                    <div>'+data.name2+'</div>\
-                    <div><span class="team_2">'+data.odds2+'</span></div></div>\
+                    <div style="font-size: 15px">'+data.name2+'</div>\
+                    <div style="line-height: 30px">赔率<span class="team_2">'+data.odds2+'</span></div></div>\
                     <div class="xiazhu_btn" \
                     onclick="xiazhu(\''+data.id+'\',\''+data.name2+'\',\''+data.name+'\',2,'+data.odds2+')">\
                     下注 </div> </div>'
@@ -354,26 +420,26 @@
                     //3种结果情况
                     str+='<div class="xiazhu_view" style="width: 33.3333%;">\
                     <div style="width: 100%;float: left;line-height: 20px">\
-                    <div>'+data.name1+'</div>\
-                    <div><span class="team_1">'+data.odds1+'</span></div></div> </div>'
+                    <div style="font-size: 15px">'+data.name1+'</div>\
+                    <div style="line-height: 30px">赔率<span class="team_1">'+data.odds1+'</span></div></div> </div>'
                     str+='<div class="xiazhu_view" style="width: 33.3333%;">\
                     <div style="width: 100%;float: left;line-height: 20px">\
-                    <div>'+data.name2+'</div>\
-                    <div><span class="team_2">'+data.odds2+'</span></div></div> </div>'
+                    <div style="font-size: 15px">'+data.name2+'</div>\
+                    <div style="line-height: 30px">赔率<span class="team_2">'+data.odds2+'</span></div></div> </div>'
                     str+='<div class="xiazhu_view" style="width: 33.3333%;">\
                     <div style="width: 100%;float: left;line-height: 20px">\
-                    <div>'+data.name3+'</div>\
-                    <div><span class="team_3">'+data.odds3+'</span></div></div> </div>'
+                    <div style="font-size: 15px">'+data.name3+'</div>\
+                    <div style="line-height: 30px">赔率<span class="team_3">'+data.odds3+'</span></div></div> </div>'
                 }else{
                     //2种结果情况
                     str+='<div class="xiazhu_view" style="width: 50%;">\
                     <div style="width: 100%;float: left;line-height: 20px">\
-                    <div>'+data.name1+'</div>\
-                    <div><span class="team_1">'+data.odds1+'</span></div></div></div>'
+                    <div style="font-size: 15px">'+data.name1+'</div>\
+                    <div style="line-height: 30px">赔率<span class="team_1">'+data.odds1+'</span></div></div></div>'
                     str+='<div class="xiazhu_view" style="width: 50%;">\
                     <div style="width: 100%;float: left;line-height: 20px">\
-                    <div>'+data.name2+'</div>\
-                    <div><span class="team_2">'+data.odds2+'</span></div></div> </div>'
+                    <div style="font-size: 15px">'+data.name2+'</div>\
+                    <div style="line-height: 30px">赔率<span class="team_2">'+data.odds2+'</span></div></div> </div>'
                 }
             }
 
@@ -382,6 +448,6 @@
             return str
         }
     }
-    </script>
+</script>
 </body>
 </html>
