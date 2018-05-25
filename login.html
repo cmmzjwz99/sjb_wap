@@ -38,34 +38,34 @@
             max-width: 400px;
         }
 
-        .regist {
-            /* background-color: #f00; *//* left: -10%;  *//* position: absolute; *//* margin-left: -5%; */
-            width: 70%;
-            height: 300px;
-            display: flex;
-            justify-content: center;
-            background-color: #fefefe;
-            margin-left: 15%;
-            border-radius: 30px;
+        /*.regist {*/
+            /*!* background-color: #f00; *!!* left: -10%;  *!!* position: absolute; *!!* margin-left: -5%; *!*/
+            /*width: 70%;*/
+            /*height: 300px;*/
+            /*display: flex;*/
+            /*justify-content: center;*/
+            /*background-color: #fefefe;*/
+            /*margin-left: 15%;*/
+            /*border-radius: 30px;*/
 
-        }
+        /*}*/
 
-        .search-area {
-            top: -390px;
-            box-sizing: border-box;
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            margin-left: 20%;
-            margin-right: 20%;
-        }
+        /*.search-area {*/
+            /*top: -390px;*/
+            /*box-sizing: border-box;*/
+            /*position: relative;*/
+            /*display: flex;*/
+            /*flex-wrap: wrap;*/
+            /*align-items: center;*/
+            /*margin-left: 20%;*/
+            /*margin-right: 20%;*/
+        /*}*/
 
         .search-title {
             display: flex;
             color: #333;
             width: 100%;
-            height: 44px;
+            height: 30px;
             line-height: 44px;
             font-size: 16px;
             justify-content: center;
@@ -80,7 +80,7 @@
             padding-right: 20px;
             /*border-radius: 15px;*/
             margin-left: 10%;
-            border: 1px solid #666;
+            border: 1px solid #cccccc;
             font-family: "微软雅黑";
             background: #fff;
             display: flex;
@@ -96,7 +96,7 @@
             padding-right: 20px;
             /*border-radius: 15px;*/
             margin-left: 10%;
-            border: 1px solid #666;
+            border: 1px solid #cccccc;
             font-family: "微软雅黑";
             background: #fff;
             display: flex;
@@ -105,15 +105,15 @@
 
         .search-txt3 {
             margin-top: 40px;
-            font-size: 16px;
+            font-size: 14px;
             box-sizing: border-box;
             width: 40%;
             margin-left: 30%;
             height: 30px;
             padding-left: 20px;
             padding-right: 20px;
-            /*border-radius: 15px;*/
-            border: 1px solid #eee;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
             font-family: "微软雅黑";
             background: #2d59df;
             display: flex;
@@ -126,7 +126,7 @@
 
         /* input 设置默认字体颜色 */
         ::-webkit-input-placeholder { /* WebKit browsers */
-            color: #999;
+            color: #cccccc;
         }
 
         .search-area1 {
@@ -149,7 +149,7 @@
             color: #f00;
             text-align: center;
             margin-bottom: 10px;
-            margin-right: 20px;
+            /*margin-right: 20px;*/
             margin-top: 20px;
             border:none;
             background-color: white;
@@ -193,10 +193,11 @@
 <div class="app" style="max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto">
     <div class='prizeBg2' id="login_view" style="display: none">
         <div class="prizeRegist">
-            <div class="search-title">登录</div>
+            <!--<div class="search-title">登录</div>-->
+            <p><b class="search-title" style="padding-top: 20px">登录</b></p>
             <!--<input class="search-txt" maxlength="11" type="number" placeholder="请输入手机号码" placeholder-style="color: #f00" bindinput="phoneInput" value="{{edPhone}}" />-->
 
-            <div style="height: 30px"></div>
+            <!--<div style="height: 30px"></div>-->
             <div style="position: relative;display: flex">
                 <img class="icon_user" src="imgs/icon_user.png"/>
                 <input class="search-txt2" type="tel" pattern="[0-9]{11}" id="phone" name="phone" placeholder="请输入您的手机号码"
@@ -211,16 +212,17 @@
 
 
             <div class="search-area1">
-                <input class="search-txt3" type="button" value="确 定" onclick="login(this)" id="login">
-                <input class="ipt-register" style="margin-top:-20px " type="button" value="注册" onclick="showView('login_view')">
+                <input class="search-txt3" type="button" value="确  定" onclick="login(this)" id="login">
+                <!--<input class="ipt-register" style="margin-top:-20px;margin-right: 10%" type="button" value="注册" onclick="showView('login_view')">-->
+                <div onclick="showView('login_view')" class="ipt-register" style="margin-right: 10%;margin-top:-15px " >注册</div>
             </div>
         </div>
     </div>
 
     <div class='prizeBg2' id="regist_view">
         <div class='prizeRegist'>
-            <div class="search-title">注册一下,马上开玩</div>
-
+            <!--<div class="search-title">注册一下,马上开玩</div>-->
+            <p><b class="search-title">注册一下,马上开玩</b></p>
             <div style="position: relative;display: flex">
                 <img class="icon_user2" src="imgs/icon_user.png"/>
                 <input class="search-txt" type="tel" pattern="[0-9]{11}" id="phone2" name="phone" placeholder="请输入您的手机号码"
@@ -241,9 +243,10 @@
 
             <!--<div>已有账号,前往登录</div>-->
             <div class="search-area1">
-                <input class="search-txt3" type="button" value="确 定" onclick="register(this)" id="register"/>
-                <input class="ipt-register" style="margin-right: 0;margin-top:-20px " type="button" value="已有账号,前往登录"
-                       onclick="showView(regist_view)" class="submit"/>
+                <input class="search-txt3" type="button" value="确  定" onclick="register(this)" id="register"/>
+                <!--<input class="ipt-register" style="margin-right: 10%;margin-top:-20px " type="button" value="已有账号,前往登录"-->
+                       <!--onclick="showView(regist_view)" class="submit"/>-->
+                <div onclick="showView(regist_view)" class="ipt-register" style="margin-right: 10%;margin-top:-20px " >已有账号,前往登录</div>
             </div>
         </div>
     </div>
