@@ -198,9 +198,6 @@
 
 </head>
 <body>
-<div style="position: absolute;z-index: 99;display: none">
-    <img src="WX20180523-143438.png" style="width: 375px;height: 667px">
-</div>
 <div class="app"
      style="background-color: #f2f2f2;max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto;padding-top: 35px">
 
@@ -468,6 +465,12 @@
                     <div class="xiazhu_btn'
                 if (status == 1) {
                     str += ' btn_green" onclick="xiazhu(\'' + data.id + '\',\'' + data.name1 + '\',\'' + data.name + '\',1,' + data.odds1 + ')'
+                }else if(status==0){
+                    str+='" onclick="alert(\'比赛未开始\')'
+                }else if(status==2){
+                    str+='" onclick="alert(\'比赛进行中，暂停下注\')'
+                }else if(status==3){
+                    str+='" onclick="alert(\'比赛已经结束\')'
                 }
                 str += '">下注 </div> </div>'
                 str += '<div class="xiazhu_view" style="width: 33.3333%;">\
@@ -478,6 +481,12 @@
                     <div class="xiazhu_btn'
                 if (status == 1) {
                     str += ' btn_green" onclick="xiazhu(\'' + data.id + '\',\'' + data.name2 + '\',\'' + data.name + '\',2,' + data.odds2 + ')'
+                }else if(status==0){
+                    str+='" onclick="alert(\'比赛未开始\')'
+                }else if(status==2){
+                    str+='" onclick="alert(\'比赛进行中，暂停下注\')'
+                }else if(status==3){
+                    str+='" onclick="alert(\'比赛已经结束\')'
                 }
                 str += '">下注 </div> </div>'
                 str += '<div class="xiazhu_view" style="width: 33.3333%;">\
@@ -488,6 +497,12 @@
                     <div class="xiazhu_btn'
                 if (status == 1) {
                     str += ' btn_green" onclick="xiazhu(\'' + data.id + '\',\'' + data.name3 + '\',\'' + data.name + '\',3,' + data.odds3 + ')'
+                }else if(status==0){
+                    str+='" onclick="alert(\'比赛未开始\')'
+                }else if(status==2){
+                    str+='" onclick="alert(\'比赛进行中，暂停下注\')'
+                }else if(status==3){
+                    str+='" onclick="alert(\'比赛已经结束\')'
                 }
                 str += '">下注 </div> </div>'
             } else {
@@ -500,6 +515,12 @@
                     <div class="xiazhu_btn'
                 if (status == 1) {
                     str += ' btn_green" onclick="xiazhu(\'' + data.id + '\',\'' + data.name1 + '\',\'' + data.name + '\',1,' + data.odds1 + ')'
+                }else if(status==0){
+                    str+='" onclick="alert(\'比赛未开始\')'
+                }else if(status==2){
+                    str+='" onclick="alert(\'比赛进行中，暂停下注\')'
+                }else if(status==3){
+                    str+='" onclick="alert(\'比赛已经结束\')'
                 }
                 str += '">下注 </div> </div>'
                 str += '<div class="xiazhu_view" style="width: 50%;">\
@@ -510,6 +531,12 @@
                     <div class="xiazhu_btn'
                 if (status == 1) {
                     str += ' btn_green" onclick="xiazhu(\'' + data.id + '\',\'' + data.name2 + '\',\'' + data.name + '\',2,' + data.odds2 + ')'
+                }else if(status==0){
+                    str+='" onclick="alert(\'比赛未开始\')'
+                }else if(status==2){
+                    str+='" onclick="alert(\'比赛进行中，暂停下注\')'
+                }else if(status==3){
+                    str+='" onclick="alert(\'比赛已经结束\')'
                 }
                 str += '">下注 </div> </div>'
             }
