@@ -7,6 +7,7 @@
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.cookie.js"></script>
@@ -235,6 +236,9 @@
                     </div>
                 </div>
                 <div class="modal-footer" style="border:0;text-align: center">
+                    <button type="button" class="btn" style="background-color: #00cc66;color: white;width: 30%"
+                            onclick="window.location.href='cz.html'">去充值
+                    </button>
                     <button type="button" class="btn" style="background-color: #4870e3;color: white;width: 30%"
                             onclick="order()">下注
                     </button>
@@ -373,13 +377,14 @@
         par['matchid'] = matchid
         par['winerid'] = winerid
         par['matchname'] = matchname
-        par['odds'] = odds
-        par['odds'] = parseFloat($('#game_' + matchid + ' .team_' + winerid).html())
-        console.log(par)
-        $('#myModalLabel').html(matchname)
-        $('#trust').html(winer)
-        $('.modal-body input').val('')
-        $('#get_point_val').html('')
+        par['odds'] = odds;
+        par['odds'] = parseFloat($('#game_' + matchid + ' .team_' + winerid).html());
+        console.log(par);
+        $('#myModalLabel').html(matchname);
+        $('#trust').html(winer);
+        $('.modal-body input').val('');
+        $('#get_point_val').html('');
+        $('#point_val').attr('placeholder','金币余额:'+user_info.points);
         $('#show_xiazhu').click()
     }
 

@@ -52,7 +52,7 @@
 </div>
 <div >
     <ul class="cztx">
-        <li>选择银行<span>招商银行</span></li>
+        <li>选择银行<span class="yh"></span></li>
         <li>存款户名<span class="hm"></span></li>
         <li>收款账号<span class="skzh"></span></li>
         <li>开户网点<span class="khwd"></span></li>
@@ -72,14 +72,15 @@
 <script src="js/jquery.cookie.js"></script>
 <script src="js/main.js"></script>
 <script>
-    var data = {
-        yh:"招商银行",
-        hm:"张林鹏",
-        skzh:6214833160191162,
-        khwd:6214833160191162,
-        rkxm:"张林鹏",
-        czje:5000
+    default_data = {
+        "balance": 3000,
+        "no": "32141345134",
+        "bank_no": "4231746912634",
+        "bank_user": "xxx",
+        "bank_name": "中国建设银行",
+        "bank_address": "xx支行"
     }
+
     window.onload = function () {
         $.ajax({
             url:'/api/payments/info.json?id='+getQueryString('id'),
@@ -87,13 +88,21 @@
             success:function (data) {
                 console.log(data)
                 data=data.data
-                document.getElementsByClassName("hm")[0].innerHTML = data.bank_user;
-                document.getElementsByClassName("skzh")[0].innerHTML = data.bank_no;
-                document.getElementsByClassName("khwd")[0].innerHTML = data.bank_no;
-                document.getElementsByClassName("rkxm")[0].innerHTML = data.no;
-                document.getElementsByClassName("czje")[0].innerHTML = data.balance;
+                render(data)
+            },
+            error:function () {
+                render(default_data)
             }
         })
+    }
+
+    function render(data) {
+        document.getElementsByClassName("yh")[0].innerHTML = data.bank_name;
+        document.getElementsByClassName("hm")[0].innerHTML = data.bank_user;
+        document.getElementsByClassName("skzh")[0].innerHTML = data.bank_no;
+        document.getElementsByClassName("khwd")[0].innerHTML = data.bank_address;
+        document.getElementsByClassName("rkxm")[0].innerHTML = data.no;
+        document.getElementsByClassName("czje")[0].innerHTML = data.balance;
     }
     function cx() {
         window.location.href='cz.html';

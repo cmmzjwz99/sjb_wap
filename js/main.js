@@ -1,9 +1,13 @@
+user_info={}
 $(function () {
     $.ajax({
         url:'/api/accounts/info.json',
         type:'get',
         datatype:'json',
         success:function (data) {
+            if(data.code==0){
+                user_info=data.data
+            }
             if(data.code==1000){
                 if ($.cookie('login_id') != null) {
                     $.ajax({
@@ -16,6 +20,8 @@ $(function () {
                         success: function (data) {
                             if (data.code != 0) {
                                 window.location.href='login.html'
+                            }else{
+                                user_info=data.data
                             }
                         }
                     })
