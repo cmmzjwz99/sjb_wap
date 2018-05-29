@@ -36,26 +36,26 @@
     <div class="top" style="max-width: 700px">
         <div class="zhxx">
             <div style="padding-top: 20%"><img src="imgs/210705163930538428.png"></div>
-            <div style="padding-bottom: 20%">13968835559</div>
+            <div style="padding-bottom: 20%" id="name_val"></div>
         </div>
         <div class="jinbi">
             <ul>
                 <li style="font-size: 8px;">金币余额:</li>
-                <li style="font-size: 25px;">59,900,000.00</li>
+                <li style="font-size: 25px;" id="points_val"></li>
                 <li><button class="btn btn-sm  top-an">去充值</button></li>
             </ul>
         </div>
     </div>
-    <div id="zhifu">
+    <div id="zhifu" style="margin-bottom: 50px">
         <ul class="cztx">
             <li class="cz"><img src="imgs/chongzhi.png"><a>充值</a></li>
             <li class="tx"><img src="imgs/tixian.png"><a>提现</a></li>
-            <li><img src="imgs/chongzhi.png"><a>我的订单</a></li>
-            <li><img src="imgs/chongzhi.png"><a>我的银行卡</a></li>
-            <li><img src="imgs/chongzhi.png"><a>修改密码</a></li>
+            <li onclick="window.location.href='bjk.html'"><img src="imgs/chongzhi.png"><a>我的订单</a></li>
+            <li onclick="window.location.href='bjk.html'"><img src="imgs/chongzhi.png"><a>我的银行卡</a></li>
+            <li onclick="window.location.href='xgmm.html'"><img src="imgs/chongzhi.png"><a>修改密码</a></li>
         </ul>
         <div style="text-align: center;">
-            <button class="btn-dc btn btn-info">登出</button></div>
+            <button class="btn-dc btn btn-info" onclick="logout()">登出</button></div>
     </div>
     <div class="footer" style="height: 45px;text-align: center;font-size: 10px;">
         <a href="index.html" style="color: #8a8a8a">
@@ -91,6 +91,18 @@
         window.location.href='txjm.html';
     })
 
+    function logout() {
+        $.ajax({
+            url:'/api/accounts/logout',
+            type:'get',
+            success:function (data) {
+                if(data.code==0){
+                    window.location.href='login.html'
+                }
+            }
+        })
+    }
+
     $(function () {
         $.ajax({
             url:'/api/accounts/info.json',
@@ -106,7 +118,7 @@
     })
 
     function render(data) {
-        $('#points_val').html(data.points)
+        $('#points_val').html(data.points+'.00')
         $('#name_val').html(data.login)
     }
 </script>

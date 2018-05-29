@@ -52,10 +52,10 @@
 </div>
 <div>
     <ul class="cztx">
-        <li>提现银行<input id="txyh" type="text" placeholder="请输入您的所属银行"></li>
-        <li>提现账号<input id="txzh" type="text" placeholder="请输入您的银行卡账号"></li>
-        <li>提现金额<input id="txje" type="text" placeholder="提现金额必须大于剩余金币"></li>
-        <li>收款人姓名<input id="skxm" type="text"placeholder="请输入收款人姓名"></li>
+        <li>提现银行<input id="txyh" type="text" placeholder="请输入您的所属银行" disabled></li>
+        <li>提现账号<input id="txzh" type="text" placeholder="请输入您的银行卡账号" disabled></li>
+        <li>收款人姓名<input id="skxm" type="text"placeholder="请输入收款人姓名" disabled></li>
+        <li>提现金额<input id="txje" type="text" placeholder="提现金额必须大于剩余金币" ></li>
     </ul>
     <button class="but btn btn-info" onclick="tx()">确认提现</button>
 </div>
@@ -64,6 +64,21 @@
 <script src="js/jquery.cookie.js"></script>
 <script src="js/main.js"></script>
 <script>
+    $(function () {
+        $.ajax({
+            url:'/api/banks/info',
+            type:'get',
+            success:function (data) {
+                data=data.data
+                if(data.no.length==0){
+                    window.location.href='bjk.html?type=1'
+                }
+                $("#txyh").val(data.bank)
+                $("#txzh").val(data.no)
+                $("#skxm").val(data.name)
+            }
+        })
+    })
     function tx() {
         $.ajax({
             url:'/api/payments/tixian',

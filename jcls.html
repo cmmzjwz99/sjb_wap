@@ -60,12 +60,12 @@
     <div class="top" style="max-width: 700px">
         <div class="zhxx">
             <div style="padding-top: 20%"><img src="imgs/210705163930538428.png"></div>
-            <div style="padding-bottom: 20%">13968835559</div>
+            <div style="padding-bottom: 20%" id="name_val"></div>
         </div>
         <div class="jinbi">
             <ul>
                 <li style="font-size: 8px;">金币余额:</li>
-                <li style="font-size: 25px;">59,900,000.00</li>
+                <li style="font-size: 25px;" id="points_val"></li>
                 <li>
                     <button class="btn btn-sm  top-an">去充值</button>
                 </li>
@@ -181,7 +181,7 @@
             type: 'get',
             success: function (data) {
                 data = data.data
-                $('#points_val').html(data.points)
+                $('#points_val').html(data.points+'.00')
                 $('#name_val').html(data.login)
                 console.log(data)
             }
@@ -218,10 +218,9 @@
         disilie.innerHTML = h.get_point;
         row.appendChild(disilie)
 
-        if (h.get_point == "进行中") {
+        if (h.get_point == "进行中" || h.get_point == "结算中" ) {
             row.style.backgroundColor = "#669933";
-        }
-        if (h.get_point != "进行中") {
+        }else{
             row.style.backgroundColor = "#ffffff";
         }
 

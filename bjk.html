@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>编辑银行卡</title>
+    <title>世界杯</title>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/cz.css" rel="stylesheet" type="text/css">
@@ -15,12 +15,62 @@
     </div>
     <div>
         <ul class="cztx">
-            <li>所属银行<span>招商银行</span></li>
-            <li>银行卡号<span>369685351681463845</span></li>
-            <li>姓名<span>马成伟</span></li>
+            <li>所属银行<input type="text" id="val_bank" placeholder="请输入银行"></li>
+            <li>银行卡号<input type="text" id="val_no" placeholder="请输入卡号"></li>
+            <li>姓名<input type="text" id="val_name" placeholder="请输入姓名"></li>
         </ul>
     </div>
-    <div style="margin: 95% 0px 0px 0px"><button class="but btn btn-info">编辑银行卡</button></div>
+    <div style="position: fixed;bottom: 5%;width: 100%;max-width: 700px">
+        <button class="but btn btn-info" onclick="save_bank_card()">保存银行卡</button>
+    </div>
 </div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/main.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            url:'/api/banks/info.json',
+            type:'get',
+            success:function (data) {
+                if(data.code==0){
+                    data=data.data
+                    $('#val_name').val(data.name)
+                    $('#val_no').val(data.no)
+                    $('#val_bank').val(data.bank)
+                }
+            }
+        })
+    })
+    function save_bank_card() {
+        $.ajax({
+            url:'/api/banks/update_bank',
+            type:'post',
+            data: {
+                bank: {
+                    name: $('#val_name').val(),
+                    no: $('#val_no').val(),
+                    bank: $('#val_bank').val()
+                }
+            },
+            success:function (data) {
+                console.log(data)
+                if(getQueryString('type')=='1'){
+                    window.location.href='txjm.html'
+                }else{
+                    alert('添加成功')
+                    window.location.href='cz.html'
+                }
+            }
+        })
+    }
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+</script>
 </body>
 </html>
