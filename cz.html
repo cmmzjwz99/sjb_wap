@@ -7,22 +7,6 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/cz.css" rel="stylesheet" type="text/css">
     <style>
-
-        .header {
-            position: fixed;
-            z-index: 60;
-            width: 100%;
-            max-width: 700px;
-            height: 35px;
-            top: 0;
-            text-align: center;
-            line-height: 35px;
-            font-size: 17px;
-            margin-right: auto;
-            margin-left: auto;
-            background-color: #2d59df;
-            color: white;
-        }
         .footer a {
             color: black;
         }
@@ -49,18 +33,29 @@
     <div class="header">
         我的筹码
     </div>
-    <div class="top">
-        <ul class="zhxx">
-            <li style="margin: 15px 0px 0px 10px"><img src="imgs/210705163930538428.png"></li>
-            <li style="margin-left: 10px" id="name_val"></li>
-        </ul>
-        <p class="jinbi">剩余金币:<span id="points_val"></span></p>
+    <div class="top" style="max-width: 700px">
+        <div class="zhxx">
+            <div style="padding-top: 20%"><img src="imgs/210705163930538428.png"></div>
+            <div style="padding-bottom: 20%">13968835559</div>
+        </div>
+        <div class="jinbi">
+            <ul>
+                <li style="font-size: 8px;">金币余额:</li>
+                <li style="font-size: 25px;">59,900,000.00</li>
+                <li><button class="btn btn-sm  top-an">去充值</button></li>
+            </ul>
+        </div>
     </div>
     <div id="zhifu">
         <ul class="cztx">
-            <li class="cz"><img src="imgs/chongzhi.png" style="height: 30px"><a>充值</a></li>
-            <li class="tx"><img src="imgs/tixian.png" style="height: 30px"><a>提现</a></li>
+            <li class="cz"><img src="imgs/chongzhi.png"><a>充值</a></li>
+            <li class="tx"><img src="imgs/tixian.png"><a>提现</a></li>
+            <li><img src="imgs/chongzhi.png"><a>我的订单</a></li>
+            <li><img src="imgs/chongzhi.png"><a>我的银行卡</a></li>
+            <li><img src="imgs/chongzhi.png"><a>修改密码</a></li>
         </ul>
+        <div style="text-align: center;">
+            <button class="btn-dc btn btn-info">登出</button></div>
     </div>
     <div class="footer" style="height: 45px;text-align: center;font-size: 10px;">
         <a href="index.html" style="color: #8a8a8a">
@@ -85,6 +80,10 @@
 <script src="js/jquery.cookie.js"></script>
 <script src="js/main.js"></script>
 <script>
+    default_data={
+        login:'1234567',
+        points:2000
+    }
     $(".cz").click(function(){
         window.location.href='czjm.html';
     })
@@ -98,12 +97,18 @@
             type:'get',
             success:function (data) {
                 data=data.data
-                $('#points_val').html(data.points)
-                $('#name_val').html(data.login)
-                console.log(data)
+                render(data)
+            },
+            error:function () {
+                render(default_data)
             }
         })
     })
+
+    function render(data) {
+        $('#points_val').html(data.points)
+        $('#name_val').html(data.login)
+    }
 </script>
 </body>
 </html>

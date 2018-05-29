@@ -24,6 +24,7 @@
             background-color: #2d59df;
             color: white;
         }
+
         .footer a {
             color: black;
         }
@@ -42,7 +43,8 @@
             float: left;
             width: 33.3333%
         }
-        table{
+
+        table {
             margin: 10px 2%;
         }
     </style>
@@ -55,16 +57,24 @@
     <div class="header">
         娱乐平台
     </div>
-    <div class="top" >
-        <ul class="zhxx">
-            <li style="margin: 15px 0px 0px 10px"><img src="imgs/210705163930538428.png"></li>
-            <li style="margin-left: 10px" id="name_val"></li>
-        </ul>
-        <p class="jinbi">剩余金币:<span id="points_val"></span></p>
+    <div class="top" style="max-width: 700px">
+        <div class="zhxx">
+            <div style="padding-top: 20%"><img src="imgs/210705163930538428.png"></div>
+            <div style="padding-bottom: 20%">13968835559</div>
+        </div>
+        <div class="jinbi">
+            <ul>
+                <li style="font-size: 8px;">金币余额:</li>
+                <li style="font-size: 25px;">59,900,000.00</li>
+                <li>
+                    <button class="btn btn-sm  top-an">去充值</button>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div id="ls" >
-    </div>
+    <div class="ls">
 
+    </div>
     <div class="footer" style="height: 45px;text-align: center;font-size: 10px;">
         <a href="index.html" style="color: #8a8a8a">
             <div class="footer_item">
@@ -88,57 +98,116 @@
 <script src="js/jquery.cookie.js"></script>
 <script src="js/main.js"></script>
 <script>
-    date=''
+    data = [
+        {
+            "point": 200,
+            "get_point": "进行中",
+            "team": "意大利胜",
+            "match": "B组小组赛 法国VS意大利",
+            "game": "胜负",
+            "time": "2018-05-12"
+        },
+        {
+            "point": 200,
+            "get_point": "240.0",
+            "team": "法国胜",
+            "match": "B组小组赛 法国VS意大利",
+            "game": "法国-0.5",
+            "time": "2018-05-13"
+        },
+        {
+            "point": 200,
+            "get_point": "240.0",
+            "team": "法国胜",
+            "match": "B组小组赛 法国VS意大利",
+            "game": "法国-0.5",
+            "time": "2018-05-13",
+
+        }
+    ]
     function render(data) {
-        str=''
-        for(i=0;i<data.length;i++){
-            if(data[i].time!=date){
-                str+='</tbody></table>'
-                str+='<div style="text-align: center">'+data[i].time+'</div>'
-                str+='<table class="biaoge"><tbody><tr style="background:#4870E3;color:white">\
-                   <td>状态</td> <td>比赛</td> <td>竞猜金币</td> <td>收益</td> </tr>'
-            }
-            if(data[i].get_point=='结算中' || data[i].get_point=='进行中'){
-                str+='<tr style="background:#669933;color:white">\
-                   <td>'+data[i].get_point+'</td> <td>'+data[i].match+'</td> <td>'+data[i].point+'</td> <td>'+data[i].get_point+'</td> </tr>'
-            }else{
-                str+='<tr style="background-color: white">\
-                   <td>已结算</td> <td>'+data[i].match+'</td> <td>'+data[i].point+'</td> <td>'+data[i].get_point+'</td> </tr>'
+        var date = '';
+        for (var i = 0; i < data.length; i++) { //遍历一下json数据
+            if (date != data[i].time) {
+                var div = document.createElement("div");
+                div.innerHTML = data[i].time;
+
+                $(".ls")[0].appendChild(div)
+                var xdb = document.createElement("table");
+                var hp = document.createElement("td");
+                var hp1 = document.createElement("td");
+                var hp2 = document.createElement("td");
+                xdb.appendChild(hp);
+                xdb.appendChild(hp1);
+                xdb.appendChild(hp2);
+
+
+                var xd = document.createElement("tr");
+                xd.style.backgroundColor = "#4870E3";
+                xdb.appendChild(xd);
+                xdb.id = data[i].time;
+
+                var bs = document.createElement('td');
+                bs.innerHTML = "比赛";
+                xd.appendChild(bs);
+
+                var pankou = document.createElement('td');
+                pankou.innerHTML = "盘口";
+                xd.appendChild(pankou);
+
+                var jcjb = document.createElement('td');
+                jcjb.innerHTML = "竞猜金币";
+                xd.appendChild(jcjb);
+
+                var sy = document.createElement('td');
+                sy.innerHTML = "收益";
+                xd.appendChild(sy);
+
+                var ts = getDataRow(data[i]);
+                xdb.appendChild(ts);
+                $(".ls")[0].appendChild(xdb);
+                date = data[i].time;
+            } else {
+                var ts = getDataRow(data[i]);
+                var xdb = document.getElementById(data[i].time);
+                xdb.appendChild(ts)
+                $(".ls")[0].appendChild(xdb);
             }
         }
-        console.log()
-        $('#ls').html(str)
     }
-    window.onload = function(){
+    window.onload = function () {
         $.ajax({
-            url:'/api/accounts/info.json',
-            type:'get',
-            success:function (data) {
-                data=data.data
+            url: '/api/accounts/info.json',
+            type: 'get',
+            success: function (data) {
+                data = data.data
                 $('#points_val').html(data.points)
                 $('#name_val').html(data.login)
                 console.log(data)
             }
         })
         $.ajax({
-            url:'/api/quiz/my_order.json',
-            type:'get',
-            success:function (data) {
-                data=data.data
+            url: '/api/quiz/my_order.json',
+            type: 'get',
+            success: function (data) {
+                data = data.data
+                render(data)
+            },
+            error: function () {
                 render(data)
             }
         })
     }
 
-    function getDataRow(h){
+    function getDataRow(h) {
         var row = document.createElement('tr'); //创建行
 
         var idCell = document.createElement('td'); //创建第一列id
-        idCell.innerHTML = h.get_point; //填充数据
+        idCell.innerHTML = h.match; //填充数据
         row.appendChild(idCell); //加入行  ，下面类似
 
         var nameCell = document.createElement('td');//创建第二列name
-        nameCell.innerHTML = h.match;
+        nameCell.innerHTML = h.game;
         row.appendChild(nameCell);
 
         var jobCell = document.createElement('td');//创建第三列job
@@ -146,17 +215,17 @@
         row.appendChild(jobCell);
 
         var disilie = document.createElement('td')
-        disilie.innerHTML = h.team;
+        disilie.innerHTML = h.get_point;
         row.appendChild(disilie)
 
-        if(h.get_point=="进行中"){
-            row.style.backgroundColor="#669933";
+        if (h.get_point == "进行中") {
+            row.style.backgroundColor = "#669933";
         }
-        if(h.get_point=="已结束"){
-            row.style.backgroundColor="#ffffff";
+        if (h.get_point != "进行中") {
+            row.style.backgroundColor = "#ffffff";
         }
 
-        return  row;
+        return row;
     }
 </script>
 </body>

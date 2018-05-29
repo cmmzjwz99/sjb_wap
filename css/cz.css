@@ -20,13 +20,20 @@ a:hover{
     list-style: none;
     text-decoration:none
 }
-.top-cm{
-    background: #2d59df;
+.header {
+    position: fixed;
+    z-index: 60;
+    width: 100%;
+    max-width: 700px;
+    height: 35px;
+    top: 0;
     text-align: center;
-    font-size: 15px;
-    color: azure;
-    line-height: 30px;
-    height: 30px;
+    line-height: 35px;
+    font-size: 17px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #2d59df;
+    color: white;
 }
 .top{
     width: 100%;
@@ -34,8 +41,7 @@ a:hover{
     overflow:hidden;
     color: #f0ffff;
     text-align: center;
-    margin: 0px 0px 20px 0px;
-    padding: 0px;
+    margin-bottom: 20px;
 }
 .top img{
     width: 40%;
@@ -43,20 +49,29 @@ a:hover{
 .zhxx{
     float: left;
     width: 50%;
-    line-height: 80px;
+    line-height: 40px;
 }
 .jinbi{
     float: left;
     width: 50%;
     font-size: 20px;
-    text-align: center;
-    line-height: 160px;
+    text-align: left;
+    padding-top: 8%;
+}
+.jinbi li {
+    line-height: 40px;
+}
+.top-an{
+    background: #00cc66;
+    line-height: 10px;
+    border-radius: 15px;
 }
 .cztx{
     margin: 20px 0px;
 }
 .cztx img{
     margin-right: 20px;
+    height: 30px;
 }
 .cztx li{
     width: 100%;
@@ -82,11 +97,19 @@ a:hover{
     position:fixed;
     right: 10%;
 }
+.btn-dc{
+    width: 60%;
+    height: 5%;
+    margin: 0px auto;
+    border-radius: 25px;
+    background:#2d59df;
+}
 
 .but{
     width: 90%;
     margin: 10px 5%;
-
+    background:#2d59df;
+    border-radius: 25px;
 }
 .btn-group{
     width: 100%;
@@ -126,3 +149,4 @@ a:hover{
 .foot img{
     width: 30%;
 }
+
