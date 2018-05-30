@@ -15,11 +15,39 @@
     </div>
     <div>
         <ul class="cztx">
-            <li>新密码<input class="txyh" type="text" placeholder="请输入您的新密码"></li>
-            <li>确认密码<input class="txyh" type="text" placeholder="请确认您的新密码"></li>
+            <li>新密码<input class="txyh" id="password" type="password" placeholder="请输入您的新密码"></li>
+            <li>确认密码<input class="txyh" id="confirm" type="password" placeholder="请确认您的新密码"></li>
         </ul>
     </div>
-    <div style="padding: 95% 0px"><button class="but btn btn-info">保存</button></div>
+    <div style="position: fixed;bottom: 5%;width: 100%;max-width: 700px">
+        <button class="but btn btn-info" onclick="recover_password()">保存</button>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        $(function () {
+        })
+        function recover_password() {
+            $.ajax({
+                url:'/api/accounts/recover_password',
+                type:'post',
+                data:{
+                    confirm:$('#confirm').val(),
+                    password:$('#password').val()
+                },
+                success:function (data) {
+                    if(data.code==0){
+                        alert('修改成功')
+                        window.location.href='cz.html'
+                    }else{
+                        alert(data.msg)
+                    }
+                }
+            })
+        }
+    </script>
 </div>
 </body>
 </html>

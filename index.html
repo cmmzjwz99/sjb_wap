@@ -237,7 +237,7 @@
                 </div>
                 <div class="modal-footer" style="border:0;text-align: center">
                     <button type="button" class="btn" style="background-color: #00cc66;color: white;width: 30%"
-                            onclick="window.location.href='cz.html'">去充值
+                            onclick="window.location.href='czjm.html'">去充值
                     </button>
                     <button type="button" class="btn" style="background-color: #4870e3;color: white;width: 30%"
                             onclick="order()">下注
@@ -359,7 +359,7 @@
             success: function (data) {
                 if (data.code == 0) {
                     alert('下注成功')
-                    history.go(0)
+                    window.location.href='jcls.html'
                 } else {
                     alert(data.msg)
                     if (data.code == 2) {
