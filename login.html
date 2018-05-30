@@ -346,6 +346,9 @@
 </head>
 <body>
 <div class="app" style="max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto">
+    <div style="position: fixed;max-width: 700px;z-index: 99" onclick="hide_adv()" id="adv">
+        <img src="imgs/adv.jpg" style="width: 100%">
+    </div>
     <div class="header">
         娱乐平台
     </div>
@@ -512,7 +515,7 @@
         </a>
     </div>
 
-    <div class='prizeBg2' id="login_view" style="display: none;z-index: 99;position: fixed;max-width: 700px;top: 0">
+    <div class='prizeBg2' id="login_view" style="display: none;z-index: 90;position: fixed;max-width: 700px;top: 0">
         <div class="prizeRegist">
             <!--<div class="search-title">登录</div>-->
             <p><b class="search-title" style="padding-top: 20px">登录</b></p>
@@ -540,7 +543,7 @@
         </div>
     </div>
 
-    <div class='prizeBg2' id="regist_view" style="z-index: 99;position: fixed;max-width: 700px;top: 0;">
+    <div class='prizeBg2' id="regist_view" style="z-index: 90;position: fixed;max-width: 700px;top: 0;">
         <div class='prizeRegist'>
             <!--<div class="search-title">注册一下,马上开玩</div>-->
             <p><b class="search-title">注册一下,马上开玩</b></p>
@@ -577,6 +580,11 @@
 
 <script>
 
+    $(function () {
+        setTimeout(function(){
+            hide_adv()
+        },5000)
+    })
     function showView(id) {
         if (id == 'login_view') {
             $('#login_view').hide()
@@ -671,10 +679,11 @@
             error: function (data) {
                 alert(msg.error);
             }
-
         });
+    }
 
-
+    function hide_adv() {
+        $('#adv').hide(1000)
     }
 
     function getQueryString(name) {
