@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>世界杯</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/cz.css" rel="stylesheet" type="text/css">
+    <link href="css/jcls.css" rel="stylesheet" type="text/css">
+    <style>
+        table{
+            margin: 0 2%;
+        }
+    </style>
+</head>
+<body>
+<div class="app"
+     style="background-color: #f2f2f2;max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto;padding-top: 35px">
+    <div class="header">
+        我要充值
+    </div>
+    <div class="btn-group">
+        <button style="background:#4870E3;color: azure " class="btn tx">提现</button>
+        <button style="background:#f0ffff;color:#050407" class="btn cz">充值</button>
+    </div>
+    <div class="txbg">
+    </div>
+    <div class="czbg" style="display: none">
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/main.js"></script>
+<script>
+    $(".tx").click(function () {
+        $(".tx").css('background-color', '#4870E3').css('color', 'azure');
+        $(".cz").css('background-color', '#f0ffff').css('color', '#050407');
+        $(".czbg").css("display", "none");
+        $(".txbg").css("display", "block");
+    })
+    $(".cz").click(function () {
+        $(".tx").css('background-color', '#f0ffff').css('color', '#050407');
+        $(".cz").css('background-color', '#4870E3').css('color', 'azure');
+        $(".txbg").css("display", "none");
+        $(".czbg").css("display", "block");
+    })
+    var cz = []
+    var tx = []
+
+    window.onload = function () {
+        $.ajax({
+            url:'/api/payments/history.json',
+            type:'get',
+            success:function (data) {
+                if(data.code==0){
+                    cz=data.data.cz
+                    tx=data.data.tx
+                    czbg();
+                    txbg();
+                }
+            }
+        })
+    }
+    function czbg() {
+        var date = '';
+        for (var i = 0; i < cz.length; i++) { //遍历一下json数据
+            if (date != cz[i].date) {
+                var div = document.createElement("div");
+                div.style.textAlign='center'
+                div.style.padding='10px'
+                div.innerHTML = cz[i].date;
+
+                $(".czbg")[0].appendChild(div)
+                var xdb = document.createElement("table");
+
+                var xd = document.createElement("tr");
+                xd.style.backgroundColor = "#4870E3";
+                xdb.appendChild(xd);
+                xdb.id = cz[i].date;
+
+                var bs = document.createElement('td');
+                bs.innerHTML = "充值金额";
+                xd.appendChild(bs);
+
+                var pankou = document.createElement('td');
+                pankou.innerHTML = "充值时间";
+                xd.appendChild(pankou);
+
+                var jcjb = document.createElement('td');
+                jcjb.innerHTML = "状态";
+                xd.appendChild(jcjb);
+
+                var ts = getDataRow(cz[i]);
+                xdb.appendChild(ts);
+                $(".czbg")[0].appendChild(xdb);
+                date = cz[i].date;
+            } else {
+                var ts = getDataRow(cz[i]);
+                var xdb = document.getElementById(cz[i].date);
+                xdb.appendChild(ts)
+                $(".czbg")[0].appendChild(xdb);
+            }
+        }
+    }
+
+    function txbg() {
+        var date = '';
+        for (var i = 0; i < tx.length; i++) { //遍历一下json数据
+            if (date != tx[i].date) {
+                var div = document.createElement("div");
+                div.style.textAlign='center'
+                div.style.padding='10px'
+                div.innerHTML = tx[i].date;
+
+                $(".txbg")[0].appendChild(div)
+                var xdb = document.createElement("table");
+
+                var xd = document.createElement("tr");
+                xd.style.backgroundColor = "#4870E3";
+                xdb.appendChild(xd);
+                xdb.id = tx[i].date;
+
+                var bs = document.createElement('td');
+                bs.innerHTML = "提现金额";
+                xd.appendChild(bs);
+
+                var pankou = document.createElement('td');
+                pankou.innerHTML = "提现时间";
+                xd.appendChild(pankou);
+
+                var jcjb = document.createElement('td');
+                jcjb.innerHTML = "状态";
+                xd.appendChild(jcjb);
+
+                var ts = getDataRow(tx[i]);
+                xdb.appendChild(ts);
+                $(".txbg")[0].appendChild(xdb);
+                date = tx[i].date;
+            } else {
+                var ts = getDataRow(tx[i]);
+                var xdb = document.getElementById(tx[i].date);
+                xdb.appendChild(ts)
+                $(".txbg")[0].appendChild(xdb);
+            }
+        }
+    }
+    function getDataRow(h) {
+        var row = document.createElement('tr'); //创建行
+        row.onclick=function () {
+            window.location.href='czjm2.html?id='+h.id
+        }
+
+        var idCell = document.createElement('td'); //创建第一列id
+        idCell.innerHTML = h.balance; //填充数据
+        row.appendChild(idCell); //加入行  ，下面类似
+
+        var nameCell = document.createElement('td');//创建第二列name
+        nameCell.innerHTML = h.time;
+        row.appendChild(nameCell);
+
+        var jobCell = document.createElement('td');//创建第三列job
+        jobCell.innerHTML = h.status;
+        row.appendChild(jobCell);
+
+        if (h.status == "审核中") {
+            row.style.backgroundColor = "#669933";
+        }
+        if (h.status != "审核中") {
+            row.style.backgroundColor = "#ffffff";
+        }
+
+        return row;
+    }
+
+</script>
+</html>

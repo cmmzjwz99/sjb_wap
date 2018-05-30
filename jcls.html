@@ -45,7 +45,7 @@
         }
 
         table {
-            margin: 10px 2%;
+            margin: 0 2%;
         }
     </style>
 </head>
@@ -57,7 +57,7 @@
     <div class="header">
         娱乐平台
     </div>
-    <div class="top" style="max-width: 700px">
+    <div class="top" style="max-width: 700px;margin-bottom: 0">
         <div class="zhxx">
             <div style="padding-top: 20%"><img src="imgs/210705163930538428.png"></div>
             <div style="padding-bottom: 20%" id="name_val"></div>
@@ -130,6 +130,8 @@
         for (var i = 0; i < data.length; i++) { //遍历一下json数据
             if (date != data[i].time) {
                 var div = document.createElement("div");
+                div.style.textAlign='center'
+                div.style.padding='10px'
                 div.innerHTML = data[i].time;
 
                 $(".ls")[0].appendChild(div)

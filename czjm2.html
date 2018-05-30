@@ -48,7 +48,7 @@
 <div class="app"
      style="background-color: #f2f2f2;max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto;padding-top: 35px">
 <div class="header">
-    我要充值
+    充值订单
 </div>
 <div >
     <ul class="cztx">
@@ -58,6 +58,7 @@
         <li>开户网点<span class="khwd"></span></li>
         <li>入款人姓名<span class="rkxm"></span></li>
         <li>充值金额<span class="czje"></span></li>
+        <li>状态<span class="status"></span></li>
     </ul>
 </div>
 <div class="ts">
@@ -103,6 +104,7 @@
         document.getElementsByClassName("khwd")[0].innerHTML = data.bank_address;
         document.getElementsByClassName("rkxm")[0].innerHTML = data.no;
         document.getElementsByClassName("czje")[0].innerHTML = data.balance;
+        document.getElementsByClassName("status")[0].innerHTML = data.status;
     }
     function cx() {
         window.location.href='cz.html';
