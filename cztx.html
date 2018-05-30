@@ -91,12 +91,12 @@
                 jcjb.innerHTML = "状态";
                 xd.appendChild(jcjb);
 
-                var ts = getDataRow(cz[i]);
+                var ts = getDataRow(cz[i],true);
                 xdb.appendChild(ts);
                 $(".czbg")[0].appendChild(xdb);
                 date = cz[i].date;
             } else {
-                var ts = getDataRow(cz[i]);
+                var ts = getDataRow(cz[i],true);
                 var xdb = document.getElementById(cz[i].date);
                 xdb.appendChild(ts)
                 $(".czbg")[0].appendChild(xdb);
@@ -133,22 +133,24 @@
                 jcjb.innerHTML = "状态";
                 xd.appendChild(jcjb);
 
-                var ts = getDataRow(tx[i]);
+                var ts = getDataRow(tx[i],false);
                 xdb.appendChild(ts);
                 $(".txbg")[0].appendChild(xdb);
                 date = tx[i].date;
             } else {
-                var ts = getDataRow(tx[i]);
+                var ts = getDataRow(tx[i],false);
                 var xdb = document.getElementById(tx[i].date);
                 xdb.appendChild(ts)
                 $(".txbg")[0].appendChild(xdb);
             }
         }
     }
-    function getDataRow(h) {
+    function getDataRow(h,status) {
         var row = document.createElement('tr'); //创建行
-        row.onclick=function () {
-            window.location.href='czjm2.html?id='+h.id
+        if(status){
+            row.onclick=function () {
+                window.location.href='czjm2.html?id='+h.id
+            }
         }
 
         var idCell = document.createElement('td'); //创建第一列id
