@@ -9,6 +9,7 @@
         body {
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
 
         input, textarea, select {
@@ -20,7 +21,7 @@
             width: 100%;
             height: 100%;
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.8);
             overflow: hidden;
             text-align: center;
         }
@@ -37,29 +38,6 @@
             width: 80%;
             max-width: 400px;
         }
-
-        /*.regist {*/
-            /*!* background-color: #f00; *!!* left: -10%;  *!!* position: absolute; *!!* margin-left: -5%; *!*/
-            /*width: 70%;*/
-            /*height: 300px;*/
-            /*display: flex;*/
-            /*justify-content: center;*/
-            /*background-color: #fefefe;*/
-            /*margin-left: 15%;*/
-            /*border-radius: 30px;*/
-
-        /*}*/
-
-        /*.search-area {*/
-            /*top: -390px;*/
-            /*box-sizing: border-box;*/
-            /*position: relative;*/
-            /*display: flex;*/
-            /*flex-wrap: wrap;*/
-            /*align-items: center;*/
-            /*margin-left: 20%;*/
-            /*margin-right: 20%;*/
-        /*}*/
 
         .search-title {
             display: flex;
@@ -186,12 +164,355 @@
             padding-left: 5px;
             align-items: center;
         }
+
+        .header {
+            position: fixed;
+            z-index: 60;
+            width: 100%;
+            max-width: 700px;
+            height: 35px;
+            top: 0;
+            text-align: center;
+            line-height: 35px;
+            font-size: 17px;
+            margin-right: auto;
+            margin-left: auto;
+            background-color: #2d59df;
+            color: white;
+        }
+
+        .footer a {
+            color: black;
+        }
+
+        .footer {
+            position: fixed;
+            z-index: 60;
+            width: 100%;
+            max-width: 700px;
+            height: 50px;
+            bottom: 0;
+            background-color: white;
+        }
+
+        .footer .footer_item {
+            float: left;
+            width: 33.3333%
+        }
+
+        .item .match {
+            width: 98%;
+            margin: 0 1%;
+            overflow: auto;
+            text-align: center;
+            box-sizing: border-box;
+            background-color: #4870e3;
+            color: white;
+            border-radius: 17px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .item .grey_wks {
+            background-color: #cccccc;
+        }
+
+        .item .active {
+            border-radius: 17px 17px 0 0;
+        }
+
+        .item .match .team {
+            float: left;
+            width: 25%;
+            height: 110px;
+            position: relative
+        }
+
+        .item .match .team .view {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .item .match .score {
+            float: left;
+            width: 5%;
+            line-height: 110px;
+            font-size: 20px
+        }
+
+        .item .match .content {
+            float: left;
+            width: 40%;
+            height: 110px;
+            position: relative
+        }
+
+        .item .match .content .view {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .item .match .content .view .status {
+            width: 100px;
+            line-height: 24px;
+            background-color: #00cc66;
+            border-radius: 40px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .item .match .content .view .red {
+            background-color: #ff0000;
+        }
+
+        .item .match .content .view .grey {
+            background-color: #797979;
+        }
+
+        .item .game {
+            background-color: #ffffff;
+            display: none;
+            width: 98%;
+            margin: 0 1%;
+            border-radius: 0 0 17px 17px;
+            overflow: hidden;
+        }
+
+        .item .game .game_item {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid #F2F2F2;
+            overflow: hidden;
+            height: 100px;
+        }
+
+        .item .game .game_item .head_name {
+            width: 100%;
+            height: 45px;
+            line-height: 45px;
+            font-size: 14px;
+            padding-top: 10px;
+        }
+
+        .item .game .game_item .head_name .text {
+            background-color: #4870e3;
+            border-radius: 15px;
+            padding: 3px 15px;
+            color: white;
+            height: 22px;
+            line-height: 18px;
+            width: 100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .item .game .game_item .xiazhu_view {
+            float: left;
+            height: 40px;
+            font-size: 10px;
+            text-align: center;
+            box-sizing: border-box;
+            width: 50px;
+        }
+
+        .item .game .game_item .xiazhu_view .xiazhu_btn {
+            width: 40px;
+            float: left;
+            line-height: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: #797979;
+            color: white;
+            font-size: 15px;
+        }
+
+        .item .game .game_item .xiazhu_view .btn_green {
+
+            background-color: #669933;
+        }
+
+        .date {
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #646464;
+            margin-bottom: -10px;
+        }
     </style>
 
 </head>
 <body>
 <div class="app" style="max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto">
-    <div class='prizeBg2' id="login_view" style="display: none">
+    <div class="header">
+        娱乐平台
+    </div>
+    <div id="main_data" style="padding-bottom: 60px;margin-top: 40px">
+        <div class="date">2018-05-20</div>
+        <div class="item">
+            <div class="match " id="6" onclick="show_item(this)">
+                <div class="team">
+                    <div class="view"><img src="imgs/guoqi/eluosi.png" style="width: 60%;max-width: 80px">
+                        <div>俄罗斯</div>
+                    </div>
+                </div>
+                <div class="score score1">2</div>
+                <div class="content">
+                    <div class="view">
+                        <div style="line-height: 45px;font-size: 16px">A组小组赛</div>
+                        <div class="status red">已结束</div>
+                        <div style="font-size: 10px;line-height: 30px">02:00 开球</div>
+                    </div>
+                </div>
+                <div class="score score2">0</div>
+                <div class="team">
+                    <div class="view"><img src="imgs/guoqi/shatealabo.png" style="width: 60%;max-width: 80px">
+                        <div>沙特阿拉伯</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="match " id="7" onclick="show_item(this)">
+                <div class="team">
+                    <div class="view"><img src="imgs/guoqi/aiji.png" style="width: 60%;max-width: 80px">
+                        <div>埃及</div>
+                    </div>
+                </div>
+                <div class="score score1">0</div>
+                <div class="content">
+                    <div class="view">
+                        <div style="line-height: 45px;font-size: 16px">A组小组赛</div>
+                        <div class="status red">已结束</div>
+                        <div style="font-size: 10px;line-height: 30px">04:00 开球</div>
+                    </div>
+                </div>
+                <div class="score score2">0</div>
+                <div class="team">
+                    <div class="view"><img src="imgs/guoqi/wulagui.png" style="width: 60%;max-width: 80px">
+                        <div>乌拉圭</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="date">2018-05-21</div>
+        <div class="item">
+            <div class="match grey_wks" id="8" onclick="show_item(this)">
+                <div class="team">
+                    <div class="view"><img src="imgs/guoqi/faguo.png" style="width: 60%;max-width: 80px">
+                        <div>法国</div>
+                    </div>
+                </div>
+                <div class="score score1">0</div>
+                <div class="content">
+                    <div class="view">
+                        <div style="line-height: 45px;font-size: 16px">C组小组赛</div>
+                        <div class="status grey">未开始</div>
+                        <div style="font-size: 10px;line-height: 30px">02:00 开球</div>
+                    </div>
+                </div>
+                <div class="score score2">0</div>
+                <div class="team">
+                    <div class="view"><img src="imgs/guoqi/aodaliya.png" style="width: 60%;max-width: 80px">
+                        <div>澳大利亚</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="match grey_wks" id="9" onclick="show_item(this)">
+                <div class="team">
+                    <div class="view"><img src="imgs/zhudui.png" style="width: 60%;max-width: 80px">
+                        <div>坎伯兰联</div>
+                    </div>
+                </div>
+                <div class="score score1">0</div>
+                <div class="content">
+                    <div class="view">
+                        <div style="line-height: 45px;font-size: 16px">澳足总</div>
+                        <div class="status grey">未开始</div>
+                        <div style="font-size: 10px;line-height: 30px">02:00 开球</div>
+                    </div>
+                </div>
+                <div class="score score2">0</div>
+                <div class="team">
+                    <div class="view"><img src="imgs/kedui.png" style="width: 60%;max-width: 80px">
+                        <div>阿德莱德彗星</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="date">2018-05-24</div>
+        <div class="item">
+            <div class="match grey_wks" id="19" onclick="show_item(this)">
+                <div class="team">
+                    <div class="view"><img src="imgs/zhudui.png" style="width: 60%;max-width: 80px">
+                        <div>弗赖辛东南部</div>
+                    </div>
+                </div>
+                <div class="score score1">0</div>
+                <div class="content">
+                    <div class="view">
+                        <div style="line-height: 45px;font-size: 16px">球会友谊 五月</div>
+                        <div class="status grey">未开始</div>
+                        <div style="font-size: 10px;line-height: 30px">00:30 开球</div>
+                    </div>
+                </div>
+                <div class="score score2">0</div>
+                <div class="team">
+                    <div class="view"><img src="imgs/kedui.png" style="width: 60%;max-width: 80px">
+                        <div>克臣安萨丘林</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="match grey_wks" id="16" onclick="show_item(this)">
+                <div class="team">
+                    <div class="view"><img src="imgs/zhudui.png" style="width: 60%;max-width: 80px">
+                        <div>安斯基德</div>
+                    </div>
+                </div>
+                <div class="score score1">0</div>
+                <div class="content">
+                    <div class="view">
+                        <div style="line-height: 45px;font-size: 16px">瑞典杯 第一圈</div>
+                        <div class="status grey">未开始</div>
+                        <div style="font-size: 10px;line-height: 30px">01:00 开球</div>
+                    </div>
+                </div>
+                <div class="score score2">0</div>
+                <div class="team">
+                    <div class="view"><img src="imgs/kedui.png" style="width: 60%;max-width: 80px">
+                        <div>索伦蒂纳联</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer" style="height: 45px;text-align: center;font-size: 10px;">
+        <div class="footer_item">
+            <div><img src="imgs/竞猜1.png" style="width: 25px;margin-top: 3px"></div>
+            <div style="color: #2d59df">竞猜</div>
+        </div>
+        <a href="jcls.html" style="color: #8a8a8a">
+            <div class="footer_item">
+                <div><img src="imgs/竞猜历史1.png" style="width: 25px;margin-top: 3px"></div>
+                <div>竞猜历史</div>
+            </div>
+        </a>
+        <a href="cz.html" style="color: #8a8a8a">
+            <div class="footer_item">
+                <div><img src="imgs/我的筹码1.png" style="width: 25px;margin-top: 3px"></div>
+                <div>我的筹码</div>
+            </div>
+        </a>
+    </div>
+
+    <div class='prizeBg2' id="login_view" style="display: none;z-index: 99;position: fixed;max-width: 700px;top: 0">
         <div class="prizeRegist">
             <!--<div class="search-title">登录</div>-->
             <p><b class="search-title" style="padding-top: 20px">登录</b></p>
@@ -219,7 +540,7 @@
         </div>
     </div>
 
-    <div class='prizeBg2' id="regist_view">
+    <div class='prizeBg2' id="regist_view" style="z-index: 99;position: fixed;max-width: 700px;top: 0;">
         <div class='prizeRegist'>
             <!--<div class="search-title">注册一下,马上开玩</div>-->
             <p><b class="search-title">注册一下,马上开玩</b></p>
