@@ -26,7 +26,14 @@
         .footer a {
             color: black;
         }
+        .btn-info{
+            background-color: #2d59df;
+        }
 
+        .cztx button{
+            position: absolute;
+            right: 20px;
+        }
         .footer {
             position: fixed;
             z-index: 60;
@@ -105,12 +112,31 @@
         document.getElementsByClassName("rkxm")[0].innerHTML = data.no;
         document.getElementsByClassName("czje")[0].innerHTML = data.balance;
         document.getElementsByClassName("status")[0].innerHTML = data.status;
+        if(data.status=='审核中'){
+            $('.ts').append(' <button class="but btn btn-info" onclick="cx()">撤销订单</button>')
+        }
     }
     function cx() {
         window.location.href='cz.html';
+        $.ajax({
+            url:'/api/payments/cancel?id='+getQueryString('id'),
+            type:'post',
+            success:function (data) {
+                if(data.code==0){
+                    alert('撤销成功')
+                    window.location.href='cz.html'
+                }else{
+                    alert(data.msg)
+                    history.go(0)
+                }
+            }
+        })
     }
-    function copy() {
-        var url= $(".hm").innerText;
+    function copy(name) {
+        //window.clipboardData.setData("Text", $("#"+name).html());
+        //window.getSelection().removeAllRanges();
+        //window.getSelection().addRange($("#"+name).html());
+        //alert('复制成功！');
     }
 
     function getQueryString(name) {
