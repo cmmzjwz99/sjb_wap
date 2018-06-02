@@ -118,8 +118,21 @@
     })
 
     function render(data) {
-        $('#points_val').html(data.points+'.00')
+        $('#points_val').html(fg(data.points.toString())+'.00')
         $('#name_val').html(data.login)
+    }
+
+    function fg(s) {
+        var result="";
+        var cs=0;
+        for(var i=s.length-1;i>=0;i--){
+            cs++;
+            result=s.charAt(i)+result;
+            if(!(cs%3)&&i!=0){
+                result=","+result;
+            }
+        }
+        return result;
     }
 </script>
 </body>
