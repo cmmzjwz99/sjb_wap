@@ -206,7 +206,7 @@
      style="background-color: #f2f2f2;max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto;padding-top: 35px">
 
     <div class="header">
-        娱乐平台
+
     </div>
     <div id="main_data" style="padding-bottom: 60px">
     </div>
@@ -235,7 +235,7 @@
                                onkeyup="value=this.value.replace(/\D+/g,'')">
                     </div>
                     <div style="margin-top: 15px;font-size: 13px">
-                        预计收益：<span id="get_point_val"></span>
+                        预计最高收益：<span id="get_point_val"></span>
                     </div>
                 </div>
                 <div class="modal-footer" style="border:0;text-align: center">
@@ -340,6 +340,13 @@
                     }
                 }
                 peilv()
+            }
+        })
+        $.ajax({
+            url: '/api/settings/title',
+            type: 'get',
+            success: function (data) {
+                $('.header').html(data.data)
             }
         })
     })
