@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>联系客服</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/cz.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="app"
+     style="background-color:#ffffff;max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto;padding-top: 35px">
+    <div class="header">
+        联系客服
+    </div>
+    <div style="text-align: center;margin:60px 0px">
+        <img src="imgs/kefu.png" style="width: 60%;">
+    </div>
+    <div style="text-align: center;">
+        <p style="font-size: 20px;margin-bottom: 30px">24小时为您服务</p>
+        <p>QQ:<span id="val_phone">602714027</span></p>
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script>
+    $.ajax({
+        url:'/api/settings/category',
+        type:'get',
+        success:function (data) {
+            $('#val_phone').html(data.data)
+        }
+    })
+</script>
+</body>
+</html>
