@@ -69,7 +69,7 @@
     </ul>
 </div>
 <div class="ts">
-    <p>请会员登入手机<span>支付宝</span>，转账给银行卡。</p>
+    <p>请会员登入<span id="category"></span>，转账给银行卡。</p>
     <p>如已完成付款，请勿撤销，我们会尽快为您处理。</p>
 </div>
 <div>
@@ -112,6 +112,7 @@
         document.getElementsByClassName("rkxm")[0].innerHTML = data.no;
         document.getElementsByClassName("czje")[0].innerHTML = data.balance;
         document.getElementsByClassName("status")[0].innerHTML = data.status;
+        document.getElementsByClassName("category")[0].innerHTML = data.category;
         if(data.status=='审核中'){
             $('.ts').append(' <button class="but btn btn-info" onclick="cx()">撤销订单</button>')
         }
