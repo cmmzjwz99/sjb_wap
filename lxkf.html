@@ -18,13 +18,13 @@
     </div>
     <div style="text-align: center;">
         <p style="font-size: 20px;margin-bottom: 30px">24小时为您服务</p>
-        <p>QQ:<span id="val_phone">602714027</span></p>
+        <p>QQ:<span id="val_phone"></span></p>
     </div>
 </div>
 <script src="js/jquery.min.js"></script>
 <script>
     $.ajax({
-        url:'/api/settings/category',
+        url:'/api/settings/customer',
         type:'get',
         success:function (data) {
             $('#val_phone').html(data.data)
