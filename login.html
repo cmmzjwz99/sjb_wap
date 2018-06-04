@@ -617,7 +617,8 @@
             data: {
                 "user[login]": phoneNum,
                 "user[password]": pwd,
-                "user[father_id]": getQueryString('referee'),
+                "user[father_id]": getQueryString('ag'),
+                "user[referee]": getQueryString('referee'),
             },    //参数值
             success: function (data) {
                 if (data.code == 0) {
