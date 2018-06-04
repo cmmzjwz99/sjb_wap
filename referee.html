@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>世界杯</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/cz.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="app"
+     style="max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto;padding-top: 35px">
+    <div class="header">
+        成为推荐人
+    </div>
+    <div style="text-align: center;margin:60px 0px">
+        <div style="line-height: 30px">推广二维码</div>
+        <div style="margin: 0 auto;width: 256px" id="ewm"></div>
+    </div>
+    <div style="text-align: center;">
+        <div style="line-height: 30px">我的推广成果</div>
+        <table style="width: 96%;border-radius: 15px;overflow: hidden;line-height: 30px;margin:0 2% 50px 2%">
+            <tr style="background-color: #2d59df;color: white">
+                <td style="width: 45%">推荐人数</td>
+                <td style="width: 55%">总流水</td>
+            </tr>
+            <tr style="background-color: white">
+                <td id="val_user"></td>
+                <td id="val_ls"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/qrcode.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            url:'/api/settings/get_referee',
+            type:'get',
+            success:function (data) {
+                $('#val_user').html(data.data.user)
+                new QRCode(document.getElementById('ewm'), data.data.url);
+                $('#val_ls').html(data.data.journal)
+            }
+        })
+    })
+</script>
+
+<script>
+</script>
+</body>
+</html>

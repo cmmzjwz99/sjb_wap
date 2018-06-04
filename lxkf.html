@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>联系客服</title>
+    <title>世界杯</title>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/cz.css" rel="stylesheet" type="text/css">
@@ -23,12 +23,14 @@
 </div>
 <script src="js/jquery.min.js"></script>
 <script>
-    $.ajax({
-        url:'/api/settings/customer',
-        type:'get',
-        success:function (data) {
-            $('#val_phone').html(data.data)
-        }
+    $(function () {
+        $.ajax({
+            url:'/api/settings/customer',
+            type:'get',
+            success:function (data) {
+                $('#val_phone').html(data.data)
+            }
+        })
     })
 </script>
 </body>
