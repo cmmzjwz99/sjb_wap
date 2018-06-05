@@ -84,9 +84,9 @@
         new QRCode(document.getElementById('ewm'), data.url);
         $('#val_ls').html(data.journal)
         $('#val_rebate2').html((data.coefficient*100).toFixed(2))
-        $('#val_rebate').html(data.coefficient*data.journal)
-        $('#val_ytx').html(data.rebate)
-        $('#val_ktx').html(data.coefficient*data.journal-data.rebate)
+        $('#val_rebate').html((data.coefficient*data.journal).toFixed(0))
+        $('#val_ytx').html(data.rebate.toFixed(0))
+        $('#val_ktx').html((data.coefficient*data.journal-data.rebate).toFixed(0))
     }
 </script>
 

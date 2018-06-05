@@ -79,6 +79,9 @@
             }
         })
     })
+    $('#txje').bind('input propertychange', function () {
+        $('#txje').val($('#txje').val().replace(/\D+/g, ''))
+    });
     function tx() {
         $.ajax({
             url:'/api/payments/tixian',
