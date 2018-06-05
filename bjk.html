@@ -58,7 +58,9 @@
                 console.log(data)
                 if(getQueryString('type')=='1'){
                     window.location.href='txjm.html'
-                }else{
+                }else if(getQueryString('type')=='2'){
+                    window.location.href='rebate.html'
+                } else{
                     alert('添加成功')
                     window.location.href='cz.html'
                 }

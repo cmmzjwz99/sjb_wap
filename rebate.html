@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>世界杯</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/cz.css" rel="stylesheet" type="text/css">
+    <style>
+
+        .header {
+            position: fixed;
+            z-index: 60;
+            width: 100%;
+            max-width: 700px;
+            height: 35px;
+            top: 0;
+            text-align: center;
+            line-height: 35px;
+            font-size: 17px;
+            margin-right: auto;
+            margin-left: auto;
+            background-color: #2d59df;
+            color: white;
+        }
+        .footer a {
+            color: black;
+        }
+
+        .footer {
+            position: fixed;
+            z-index: 60;
+            width: 100%;
+            max-width: 700px;
+            height: 50px;
+            bottom: 0;
+            background-color: white;
+        }
+
+        .footer .footer_item {
+            float: left;
+            width: 33.3333%
+        }
+    </style>
+</head>
+<body>
+
+<div class="app"
+     style="background-color: #f2f2f2;max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto;padding-top: 35px">
+    <div class="header">
+        我的反点
+    </div>
+    <div>
+        <ul class="cztx">
+            <li>提现银行<input id="txyh" type="text" placeholder="请输入您的所属银行" disabled></li>
+            <li>提现账号<input id="txzh" type="text" placeholder="请输入您的银行卡账号" disabled></li>
+            <li>收款人姓名<input id="skxm" type="text"placeholder="请输入收款人姓名" disabled></li>
+            <li>提现金额<input id="txje" type="text" placeholder="提现金额必须小于剩余反点" ></li>
+        </ul>
+        <button class="but btn btn-info" onclick="tx()">确认提现</button>
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/main.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            url:'/api/banks/info',
+            type:'get',
+            success:function (data) {
+                data=data.data
+                if(data.no.length==0){
+                    window.location.href='bjk.html?type=2'
+                }
+                $("#txyh").val(data.bank)
+                $("#txzh").val(data.no)
+                $("#skxm").val(data.name)
+            }
+        })
+    })
+    function tx() {
+        $.ajax({
+            url:'/api/payments/rebate',
+            type:'post',
+            data:{payments:{
+                no:$("#txyh").val()+' '+$('#txzh').val()+' '+$('#skxm').val(),
+                balance:$('#txje').val(),
+                category:'反点提现'
+            }},
+            success:function (data) {
+                if(data.code==0){
+                    alert('提现申请成功');
+                    window.location.href='cz.html'
+                }else{
+                    alert(data.msg)
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>
