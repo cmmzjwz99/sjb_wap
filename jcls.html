@@ -47,6 +47,16 @@
         table {
             margin: 0 2%;
         }
+        table td{
+            width: 20%;
+        }
+        table tr td:first-child,
+        table tr td:nth-child(2),
+        table tr td:nth-child(3),
+        table tr td:nth-child(4),
+        table tr td:last-child{/*设置table表格每列底部边框*/
+            border-bottom: 2px solid #eaeaea;
+        }
     </style>
 </head>
 <body>
@@ -157,6 +167,10 @@
                 pankou.innerHTML = "盘口";
                 xd.appendChild(pankou);
 
+                var xiazhu = document.createElement('td');
+                xiazhu.innerHTML = "下注";
+                xd.appendChild(xiazhu);
+
                 var jcjb = document.createElement('td');
                 jcjb.innerHTML = "竞猜金币";
                 xd.appendChild(jcjb);
@@ -211,6 +225,10 @@
         var nameCell = document.createElement('td');//创建第二列name
         nameCell.innerHTML = h.game;
         row.appendChild(nameCell);
+
+        var xzCell = document.createElement('td');//创建第二列name
+        xzCell.innerHTML = h.team;
+        row.appendChild(xzCell);
 
         var jobCell = document.createElement('td');//创建第三列job
         jobCell.innerHTML = h.point;
