@@ -52,10 +52,12 @@
         <div style="line-height: 30px">我的提现</div>
         <table style="width: 96%;border-radius: 15px;overflow: hidden;line-height: 30px;margin:0 2% 20px 2%">
             <tr style="background-color: #2d59df;color: white">
+                <td style="width: 45%">总可提现金额</td>
                 <td style="width: 45%">已提现金额</td>
                 <td style="width: 55%">剩余可提现金额</td>
             </tr>
             <tr style="background-color: white">
+                <td id="val_ztx"></td>
                 <td id="val_ytx"></td>
                 <td style="text-align: right">
                     <span id="val_ktx"></span>
@@ -103,6 +105,7 @@
         $('#val_rebate_1').html(data.coefficient1*100)
         $('#val_rebate_2').html(data.coefficient2*100)
         $('#val_rebate_3').html(data.coefficient3*100)
+        $('#val_ztx').html(data.income.toFixed(0))
         $('#val_ytx').html(data.rebate.toFixed(0))
         $('#val_ktx').html((data.income-data.rebate).toFixed(0))
     }
