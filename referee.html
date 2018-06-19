@@ -100,9 +100,9 @@
         $('#val_user_1').html(data.user1)
         $('#val_user_2').html(data.user2)
         $('#val_user_3').html(data.user3)
-        $('#val_rebate_1').html(data.coefficient1)
-        $('#val_rebate_2').html(data.coefficient2)
-        $('#val_rebate_3').html(data.coefficient3)
+        $('#val_rebate_1').html(data.coefficient1*100)
+        $('#val_rebate_2').html(data.coefficient2*100)
+        $('#val_rebate_3').html(data.coefficient3*100)
         $('#val_ytx').html(data.rebate.toFixed(0))
         $('#val_ktx').html((data.income-data.rebate).toFixed(0))
     }
