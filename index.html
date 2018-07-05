@@ -357,7 +357,7 @@
     })
 
     function order() {
-        if (parseInt($('#point_val').val().replace(/\D+/g, '')) == 0) {
+        if (parseInt($('#point_val').val().replace(/\D+/g, '')) == 0 || $('#point_val').val()=='') {
             alert('请输入金币')
             return
         }

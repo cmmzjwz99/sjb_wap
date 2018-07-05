@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>世界杯</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <style>
+        body{
+            background-color: #f2f2f2;
+        }
+        input, textarea, select {
+            outline: none;
+        }
+
+        .header {
+            position: fixed;
+            z-index: 60;
+            width: 100%;
+            max-width: 700px;
+            height: 35px;
+            top: 0;
+            text-align: center;
+            line-height: 35px;
+            font-size: 17px;
+            margin-right: auto;
+            margin-left: auto;
+            background-color: #2d59df;
+            color: white;
+        }
+
+        .date {
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #646464;
+            margin-bottom: -10px;
+        }
+
+        .footer a {
+            color: black;
+        }
+
+        .footer {
+            position: fixed;
+            z-index: 60;
+            width: 100%;
+            max-width: 700px;
+            height: 50px;
+            bottom: 0;
+            background-color: white;
+        }
+
+        .footer .footer_item {
+            float: left;
+            width: 25%
+        }
+        .app{
+            background-color: #f2f2f2;max-width: 700px;margin-left: auto;
+            margin-right: auto;position: relative;overflow: auto;padding-top: 35px
+        }
+        .last_time{
+            text-align: center;color: white;padding:10px 0;background-color: #4870e3;width: 96%;
+            margin:10px 2% 0 2%;border-radius: 10px;overflow: hidden
+        }
+
+        .match {
+            width: 96%;
+            margin: 0 2%;
+            overflow: auto;
+            line-height: 50px;
+            text-align: center;
+            box-sizing: border-box;
+            background-color: #4870e3;
+            color: white;
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .game {
+            background-color: #ffffff;
+            display: none;
+            width: 96%;
+            margin: 0 2%;
+            border-radius: 0 0 10px 10px;
+            overflow: auto;
+            padding: 10px;
+        }
+        .game .xz_button{
+            float: left;width: 21%;margin: 10px 2%;background-color: #c1c1c1;line-height: 25px;color: #2a2a2a;border-radius: 5px
+        }
+        .game .xz_button_qzh{
+            float: left;width: 16%;margin: 10px 2%;background-color: #c1c1c1;line-height: 25px;color: #2a2a2a;border-radius: 5px
+        }
+        .game .xz_button_num{
+            height: 70px;line-height: 25px;padding: 10px 0;float: right
+        }
+        .game .game_item{
+            border-bottom: 1px solid #f2f2f2;
+            overflow: auto;
+            padding: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="app">
+
+    <div class="header">
+        重庆时时彩
+    </div>
+    <div id="main_data" style="padding-bottom: 60px">
+        <div class="last_time">
+            <div>第<span id="last_time_issue"></span>期结果</div>
+            <div>
+                <table style="width: 80%;margin: 0 10%">
+                    <tr style="font-size: 40px;color: #ffe019" id="last_time_code">
+                    </tr>
+                    <tr>
+                        <td>万</td>
+                        <td>千</td>
+                        <td>百</td>
+                        <td>十</td>
+                        <td>个</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div style="text-align: center">
+            <div style="padding: 5px 10px;background-color: #4870e3;margin: 10px auto;width: 80px;border-radius: 15px;overflow: hidden;color: white">下注</div>
+        </div>
+        <div class="last_time">
+            <div>当前第<span id="now_issue"></span>期</div>
+            <div style="padding-top: 10px">
+                &nbsp;&nbsp;&nbsp;&nbsp;还剩下
+                <span style="font-size: 40px;padding: 0 10px;color: #ffe019" id="end_time">00:00</span>
+                结束投注
+            </div>
+        </div>
+        <div style="margin-top: 10px">
+            <div class="match  active">
+                总／龙虎和
+            </div>
+            <div class="game" style="display: block;text-align: center">
+                <div class="xz_button" onclick="xiazhu('总／龙虎和','总单双','单',1,1,1.97,false)">单 1.97</div>
+                <div class="xz_button" onclick="xiazhu('总／龙虎和','总单双','单',1,2,1.97,false)">双 1.97</div>
+                <div class="xz_button" onclick="xiazhu('总／龙虎和','总大小','大',2,1,1.97,false)">大 1.97</div>
+                <div class="xz_button" onclick="xiazhu('总／龙虎和','总大小','小',2,2,1.97,false)">小 1.97</div>
+                <div class="xz_button" onclick="xiazhu('总／龙虎和','龙虎和','龙',3,1,1.97,false)">龙 1.97</div>
+                <div class="xz_button" onclick="xiazhu('总／龙虎和','龙虎和','虎',3,2,1.97,false)">虎 1.97</div>
+                <div class="xz_button" onclick="xiazhu('总／龙虎和','龙虎和','和',3,3,1.97,false)">和 9.2</div>
+            </div>
+        </div>
+        <div style="margin-top: 10px">
+            <div class="match  active">
+                单星直选
+            </div>
+            <div class="game" style="display: block;text-align: center;padding: 0">
+                <div class="game_item">
+                    <div style="line-height: 70px;width: 21%;float: left;background-color: #ffbd53;margin: 10px 2%;">万</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','万单双','单',4,1,1.97,false)">单 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','万单双','双',4,2,1.97,false)">双 1.97</div>
+                    <div class="xz_button xz_button_num" onclick="xiazhu('单星直选','万数字','',6,0,9.7,true)">猜数字<br/>9.7</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','万大小','大',5,1,1.97,false)">大 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','万大小','小',5,2,1.97,false)">小 1.97</div>
+                </div>
+                <div class="game_item">
+                    <div style="line-height: 70px;width: 21%;float: left;background-color: #ffbd53;margin: 10px 2%;">千</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','千单双','单',7,1,1.97,false)">单 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','千单双','双',7,2,1.97,false)">双 1.97</div>
+                    <div class="xz_button xz_button_num" onclick="xiazhu('单星直选','千数字','',9,0,9.7,true)">猜数字<br/>9.7</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','千大小','大',8,1,1.97,false)">大 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','千大小','小',8,2,1.97,false)">小 1.97</div>
+                </div>
+                <div class="game_item">
+                    <div style="line-height: 70px;width: 21%;float: left;background-color: #ffbd53;margin: 10px 2%;">百</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','百单双','单',10,1,1.97,false)">单 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','百单双','双',10,2,1.97,false)">双 1.97</div>
+                    <div class="xz_button xz_button_num" onclick="xiazhu('单星直选','百数字','',12,0,9.7,true)">猜数字<br/>9.7</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','百大小','大',11,1,1.97,false)">大 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','百大小','小',11,2,1.97,false)">小 1.97</div>
+                </div>
+                <div class="game_item">
+                    <div style="line-height: 70px;width: 21%;float: left;background-color: #ffbd53;margin: 10px 2%;">十</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','十单双','单',13,1,1.97,false)">单 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','十单双','双',13,2,1.97,false)">双 1.97</div>
+                    <div class="xz_button xz_button_num" onclick="xiazhu('单星直选','十数字','',15,0,9.7,true)">猜数字<br/>9.7</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','十大小','大',14,1,1.97,false)">大 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','十大小','小',14,2,1.97,false)">小 1.97</div>
+                </div>
+                <div class="game_item">
+                    <div style="line-height: 70px;width: 21%;float: left;background-color: #ffbd53;margin: 10px 2%;">个</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','个单双','单',16,1,1.97,false)">单 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','个单双','双',16,2,1.97,false)">双 1.97</div>
+                    <div class="xz_button xz_button_num" onclick="xiazhu('单星直选','个数字','',18,0,9.7,true)">猜数字<br/>9.7</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','个大小','大',17,1,1.97,false)">大 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','个大小','小',17,2,1.97,false)">小 1.97</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 10px">
+            <div class="match  active">
+                前中后
+            </div>
+            <div class="game" style="display: block;text-align: center;padding: 0">
+                <div class="game_item">
+                    <div>前三</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','前三','豹子',19,1,60,false)">豹子 60</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','前三','顺子',19,2,13,false)">顺子 13</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','前三','对子',19,3,2.8,false)">对子 2.8</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','前三','半顺',19,4,2,false)">半顺 2.0</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','前三','杂六',19,5,2.2,false)">杂六 2.2</div>
+                </div>
+                <div class="game_item">
+                    <div>中三</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','中三','豹子',20,1,60,false)">豹子 60</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','中三','顺子',20,2,13,false)">顺子 13</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','中三','对子',20,3,2.8,false)">对子 2.8</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','中三','半顺',20,4,2,false)">半顺 2.0</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','中三','杂六',20,5,2.2,false)">杂六 2.2</div>
+                </div>
+                <div class="game_item">
+                    <div>后三</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','后三','豹子',21,1,60,false)">豹子 60</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','后三','顺子',21,2,13,false)">顺子 13</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','后三','对子',21,3,2.8,false)">对子 2.8</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','后三','半顺',21,4,2,false)">半顺 2.0</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','后三','杂六',21,5,2.2,false)">杂六 2.2</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"
+            style="display: none" id="show_xiazhu">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         style="margin-top: 30%">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="border:0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-align: center;color: #4870e3" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body" style="text-align: center;padding: 0;font-size: 16px;">
+                    <div style="padding-bottom: 15px;line-height: 35px">您选择是：<span id="trust"></span>
+                        <select id="val_code" style="display: none">
+                            <option>选择数字</option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="text" id="point_val" placeholder="输入金币" style="border: 1px solid #cbcbcb"
+                               onkeyup="value=this.value.replace(/\D+/g,'')">
+                    </div>
+                    <div style="margin-top: 15px;font-size: 13px">
+                        预计最高收益：<span id="get_point_val"></span>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border:0;text-align: center">
+                    <button type="button" class="btn" style="background-color: #00cc66;color: white;width: 30%"
+                            onclick="window.location.href='czjm.html'">去充值
+                    </button>
+                    <button type="button" class="btn" style="background-color: #4870e3;color: white;width: 30%"
+                            onclick="order()">下注
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer" style="height: 45px;text-align: center;font-size: 10px;">
+        <a href="index.html" style="color: #8a8a8a">
+            <div class="footer_item">
+                <div><img src="imgs/竞猜2.png" style="width: 25px;margin-top: 3px"></div>
+                <div>世界杯</div>
+            </div>
+        </a>
+        <div class="footer_item">
+            <div><img src="imgs/竞猜1.png" style="width: 25px;margin-top: 3px"></div>
+            <div style="color: #2d59df">时时彩</div>
+        </div>
+        <a href="jcls.html" style="color: #8a8a8a">
+            <div class="footer_item">
+                <div><img src="imgs/竞猜历史1.png" style="width: 25px;margin-top: 3px"></div>
+                <div>竞猜历史</div>
+            </div>
+        </a>
+        <a href="cz.html" style="color: #8a8a8a">
+            <div class="footer_item">
+                <div><img src="imgs/我的筹码1.png" style="width: 25px;margin-top: 3px"></div>
+                <div>我的筹码</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+    var par={};
+    var show_drop=false;
+
+    $('#point_val').bind('input propertychange', function () {
+        $('#get_point_val').html(parseInt(parseInt($('#point_val').val().replace(/\D+/g, '')) * par['odds']))
+    });
+
+    $(function () {
+        //xiazhu()
+        $.ajax({
+            url:'/api/ssc/ssc.json',
+            type:'get',
+            success:function (data) {
+                par['ssc_game_id']=data.data.id
+                render(data.data)
+            }
+        })
+    })
+
+    function render(data) {
+        $('#last_time_issue').html(data.now_issue)
+        var arr=data.now_code.split('')
+        var str=''
+        for(i=0;i<arr.length;i++){
+            str+='<td>'+arr[i]+'</td>'
+        }
+        $('#last_time_code').html(str)
+        $('#now_issue').html(data.next_issue)
+
+        var oldTime = (new Date(data.next_time)).getTime();
+        //var oldTime = (new Date('2018-07-03 16:53:00')).getTime();
+        var newTime= (new Date()).getTime()
+        var time=parseInt((oldTime-newTime)/1000)
+        countDown((time<0 ? 0 : time-60))
+
+    }
+
+    function countDown(times){
+        var timer=null;
+        timer=setInterval(function(){
+            var day=0,
+                hour=0,
+                minute=0,
+                second=0;//时间默认值
+            if(times > 0){
+                day = Math.floor(times / (60 * 60 * 24));
+                hour = Math.floor(times / (60 * 60)) - (day * 24);
+                minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+                second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+            }
+            if (day <= 9) day = '0' + day;
+            if (hour <= 9) hour = '0' + hour;
+            if (minute <= 9) minute = '0' + minute;
+            if (second <= 9) second = '0' + second;
+            //console.log(day+"天:"+hour+"小时："+minute+"分钟："+second+"秒");
+            $('#end_time').html(minute+':'+second)
+            times--;
+            if(times<=0){
+                setTimeout(function(){window.location.reload()},90000)
+            }
+        },1000);
+        if(times<=0){
+            clearInterval(timer);
+            setTimeout(function(){window.location.reload()},90000)
+        }
+    }
+
+    function xiazhu(title,category,code,category_val,code_val,odds,drop) {
+        $('#myModalLabel').html(title)
+        $('#trust').html(category+' '+code)
+        par['odds']=odds
+        par['code']=code_val
+        par['category']=category_val
+        $('#point_val').attr('placeholder','金币余额:'+user_info.points);
+        if(drop==true){
+            $('#val_code').show()
+        }else{
+            $('#val_code').hide()
+        }
+        show_drop=drop
+        $('#show_xiazhu').click()
+    }
+
+    function order() {
+        if (parseInt($('#point_val').val().replace(/\D+/g, '')) == 0 || $('#point_val').val()=='') {
+            alert('请输入金币')
+            return
+        }
+        if(show_drop==true){
+            if($('#val_code').val()=='选择数字'){
+                alert('请选择数字')
+                return
+            }else{
+                par['code']=$('#val_code').val()
+            }
+        }
+        $.ajax({
+            url: '/api/ssc/order.json',
+            type: 'post',
+            data: {
+                order: {
+                    code: par['code'],
+                    category: par['category'],
+                    ssc_game_id: par['ssc_game_id'],
+                    point: parseInt($('#point_val').val().replace(/\D+/g, ''))
+                }
+            },
+            success: function (data) {
+                if (data.code == 0) {
+                    alert('下注成功')
+                    window.location.href='jcls.html'
+                } else {
+                    alert(data.msg)
+                    if (data.code == 2) {
+                        history.go(0)
+                    }
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

@@ -8,7 +8,6 @@
     <link href="css/cz.css" rel="stylesheet" type="text/css">
     <link href="css/jcls.css" rel="stylesheet" type="text/css">
     <style>
-
         .header {
             position: fixed;
             z-index: 60;
@@ -57,6 +56,15 @@
         table tr td:last-child{/*设置table表格每列底部边框*/
             border-bottom: 2px solid #eaeaea;
         }
+        .tab_button{
+            padding: 8px;
+            border: 1px solid #737373;
+            border-radius: 8px;
+        }
+        .tab_button_active{
+            color: rgb(252, 101, 101);
+            border:  1px solid rgb(252, 101, 101);
+        }
     </style>
 </head>
 <body>
@@ -82,8 +90,15 @@
             </ul>
         </div>
     </div>
-    <div class="ls" style="margin-bottom: 50px">
+    <div>
+        <div style="margin-top: 13px;margin-left: 10px;">
+            分类：<span onclick="tab('ls',this)" class="tab_button tab_button_active">世界杯</span><span onclick="tab('ssc_ls',this)" class="tab_button" style="margin-left: 10px">时时彩</span>
+        </div>
+        <div class="order_list ls" style="margin-bottom: 50px">
+        </div>
 
+        <div class="order_list ssc_ls" style="margin-bottom: 50px;display: none">
+        </div>
     </div>
     <div class="footer" style="height: 45px;text-align: center;font-size: 10px;">
         <a href="index.html" style="color: #8a8a8a">
@@ -109,32 +124,42 @@
 <script src="js/main.js"></script>
 <script>
     data = [
-        {
-            "point": 200,
-            "get_point": "进行中",
-            "team": "意大利胜",
-            "match": "B组小组赛 法国VS意大利",
-            "game": "胜负",
-            "time": "2018-05-12"
-        },
-        {
-            "point": 200,
-            "get_point": "240.0",
-            "team": "法国胜",
-            "match": "B组小组赛 法国VS意大利",
-            "game": "法国-0.5",
-            "time": "2018-05-13"
-        },
-        {
-            "point": 200,
-            "get_point": "240.0",
-            "team": "法国胜",
-            "match": "B组小组赛 法国VS意大利",
-            "game": "法国-0.5",
-            "time": "2018-05-13",
-
-        }
     ]
+    window.onload = function () {
+        $.ajax({
+            url: '/api/accounts/info.json',
+            type: 'get',
+            success: function (data) {
+                data = data.data
+                $('#points_val').html(fg(data.points.toString())+'.00')
+                $('#name_val').html(data.login)
+                console.log(data)
+            }
+        })
+        $.ajax({
+            url: '/api/quiz/my_order.json',
+            type: 'get',
+            success: function (data) {
+                data = data.data
+                render(data)
+            },
+            error: function () {
+                render(data)
+            }
+        })
+        $.ajax({
+            url: '/api/ssc/order_list.json',
+            type: 'get',
+            success: function (data) {
+                data = data.data
+                render_ssc(data)
+            },
+            error: function () {
+                render(data)
+            }
+        })
+    }
+
     function render(data) {
         var date = '';
         for (var i = 0; i < data.length; i++) { //遍历一下json数据
@@ -191,30 +216,7 @@
             }
         }
     }
-    window.onload = function () {
-        $.ajax({
-            url: '/api/accounts/info.json',
-            type: 'get',
-            success: function (data) {
-                data = data.data
-                $('#points_val').html(fg(data.points.toString())+'.00')
-                $('#name_val').html(data.login)
-                console.log(data)
-            }
-        })
-        $.ajax({
-            url: '/api/quiz/my_order.json',
-            type: 'get',
-            success: function (data) {
-                data = data.data
-                render(data)
-            },
-            error: function () {
-                render(data)
-            }
-        })
-    }
-
+    
     function getDataRow(h) {
         var row = document.createElement('tr'); //创建行
 
@@ -258,6 +260,42 @@
             }
         }
         return result;
+    }
+
+    //渲染时时彩列表
+    function render_ssc(data) {
+        time=''
+        str='<table>'
+        for(i=0;i<data.length;i++){
+            if(data[i].time==time){
+                //等于上一条订单日期
+                str+='<tr style="background-color: '
+                str+=(data[i].get_point=='进行中' ? 'rgb(102, 153, 51)' : 'white')
+                str+=';"><td>'+data[i].issue+'</td><td>'+data[i].category+'</td><td>'+data[i].odds+'</td>' +
+                    '<td>'+data[i].point+'</td><td>'+data[i].get_point+'</td></tr>'
+            }else{
+                //不等于上一条订单日期
+                str+='</table><div style="text-align: center; padding: 10px;">'+data[i].time+'</div><table>' +
+                    '<tr style="background-color: rgb(72, 112, 227);"><td style="width: 20%">期号</td><td>盘口</td><td>下注</td><td>竞猜金币</td><td>收益</td></tr>'
+
+                str+='<tr style="background-color: '
+                str+=(data[i].get_point=='进行中' ? 'rgb(102, 153, 51)' : 'white')
+                str+=';"><td>'+data[i].issue+'</td><td>'+data[i].category+'</td><td>'+data[i].odds+'</td>' +
+                    '<td>'+data[i].point+'</td><td>'+data[i].get_point+'</td></tr>'
+                time=data[i].time
+            }
+
+        }
+        str+='</table>'
+        $('.ssc_ls').html(str)
+    }
+    
+    //tab切换
+    function tab(name,button) {
+        $('.tab_button').removeClass('tab_button_active')
+        $(button).addClass('tab_button_active')
+        $('.order_list').hide()
+        $('.'+name).show()
     }
 </script>
 </body>
