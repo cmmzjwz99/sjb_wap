@@ -353,11 +353,11 @@
         var oldTime = (new Date(data.next_time)).getTime();
         //var oldTime = (new Date('2018-07-03 16:53:00')).getTime();
         var newTime= (new Date()).getTime()
+        alert(data.next_time)
         alert(oldTime)
         alert(newTime)
         var time=parseInt((oldTime-newTime)/1000)
         time_countDown=(time<0 ? 0 : time-60)
-        alert(time_countDown)
         countDown(time_countDown)
 
     }
