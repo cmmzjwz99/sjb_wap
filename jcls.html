@@ -137,7 +137,7 @@
             type: 'get',
             success: function (data) {
                 data = data.data
-                $('#points_val').html(fg(data.points.toString())+'.00')
+                $('#points_val').html(fg(data.points.toString()))
                 $('#name_val').html(data.login)
                 console.log(data)
             }

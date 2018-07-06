@@ -325,7 +325,9 @@
     var show_drop=false;
 
     $('#point_val').bind('input propertychange', function () {
-        $('#get_point_val').html(parseInt(parseInt($('#point_val').val().replace(/\D+/g, '')) * par['odds']))
+        //$('#get_point_val').html(Math.round((parseInt($('#point_val').val().replace(/\D+/g, '')) * par['odds'])))
+        val=(parseInt($('#point_val').val().replace(/\D+/g, '')) * par['odds']).toFixed(2)
+        $('#get_point_val').html((isNaN(val) ? '0.00' : val))
     });
 
     $(function () {
@@ -352,7 +354,7 @@
 
         var oldTime = (new Date(data.next_time.replace(/-/g,'/'))).getTime();
         //var oldTime = (new Date('2018-07-03 16:53:00')).getTime();
-        var newTime= (new Date()).getTime()
+        var newTime= (new Date(data.now_time.replace(/-/g,'/'))).getTime()
         var time=parseInt((oldTime-newTime)/1000)
         time_countDown=(time<0 ? 0 : time-60)
         countDown(time_countDown)
@@ -431,7 +433,7 @@
             success: function (data) {
                 if (data.code == 0) {
                     alert('下注成功')
-                    window.location.href='jcls.html'
+                    history.go(0)
                 } else {
                     alert(data.msg)
                     if (data.code == 2) {
