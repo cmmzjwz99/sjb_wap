@@ -355,11 +355,13 @@
         var newTime= (new Date()).getTime()
         var time=parseInt((oldTime-newTime)/1000)
         time_countDown=(time<0 ? 0 : time-60)
+        alert(time_countDown)
         countDown(time_countDown)
 
     }
     var time_countDown=0
     function countDown(times) {
+        alert('countDown')
         var day = 0,
             hour = 0,
             minute = 0,
@@ -375,6 +377,7 @@
         if (minute <= 9) minute = '0' + minute;
         if (second <= 9) second = '0' + second;
         //console.log(day+"天:"+hour+"小时："+minute+"分钟："+second+"秒");
+        alert(minute + ':' + second)
         $('#end_time').html(minute + ':' + second)
         time_countDown--;
         if (times <= 0) {
@@ -382,6 +385,7 @@
                 window.location.reload()
             }, 90000)
         }else{
+            alert('setTimeout')
             setTimeout(function () {
                 countDown(time_countDown)
             },1000)
