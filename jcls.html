@@ -277,16 +277,16 @@
                 //等于上一条订单日期
                 str+='<tr style="background-color: '
                 str+=(data[i].get_point=='进行中' ? 'rgb(102, 153, 51)' : 'white')
-                str+=';"><td>'+data[i].issue+'</td><td>'+data[i].category+'</td><td>'+data[i].odds+'</td>' +
+                str+=';"><td>'+data[i].issue+'</td><td>'+data[i].category+' '+data[i].odds+'</td><td>'+data[i].code+'</td>' +
                     '<td>'+data[i].point+'</td><td>'+data[i].get_point+'</td></tr>'
             }else{
                 //不等于上一条订单日期
                 str+='</table><div style="text-align: center; padding: 10px;">'+data[i].time+'</div><table>' +
-                    '<tr style="background-color: rgb(72, 112, 227);"><td style="width: 20%">期号</td><td>盘口</td><td>下注</td><td>竞猜金币</td><td>收益</td></tr>'
+                    '<tr style="background-color: rgb(72, 112, 227);"><td style="width: 20%">期号</td><td>下注盘口</td><td>开奖结果</td><td>竞猜金币</td><td>收益</td></tr>'
 
                 str+='<tr style="background-color: '
                 str+=(data[i].get_point=='进行中' ? 'rgb(102, 153, 51)' : 'white')
-                str+=';"><td>'+data[i].issue+'</td><td>'+data[i].category+'</td><td>'+data[i].odds+'</td>' +
+                str+=';"><td>'+data[i].issue+'</td><td>'+data[i].category+' '+data[i].odds+'</td><td>'+data[i].code+'</td>' +
                     '<td>'+data[i].point+'</td><td>'+data[i].get_point+'</td></tr>'
                 time=data[i].time
             }
