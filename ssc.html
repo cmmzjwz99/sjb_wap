@@ -70,7 +70,8 @@
         }
         .last_time{
             text-align: center;color: white;padding:10px 0;background-color: #4870e3;width: 96%;
-            margin:10px 2% 0 2%;border-radius: 10px;overflow: hidden
+            margin:10px 2% 0 2%;border-radius: 10px;overflow: hidden;
+            position: relative;
         }
 
         .match {
@@ -143,6 +144,7 @@
         </div>
         <div class="last_time">
             <div>当前第<span id="now_issue"></span>期</div>
+            <div style="position: absolute;right: 5px;top: 5px;color: #ffe019" onclick="window.location.href='ssc_rule.html'">游戏规则</div>
             <div style="padding-top: 10px">
                 &nbsp;&nbsp;&nbsp;&nbsp;还剩下
                 <span style="font-size: 40px;padding: 0 10px;color: #ffe019" id="end_time">00:00</span>
