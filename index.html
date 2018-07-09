@@ -22,145 +22,6 @@
             outline: none;
         }
 
-        .item .match {
-            width: 98%;
-            margin: 0 1%;
-            overflow: auto;
-            text-align: center;
-            box-sizing: border-box;
-            background-color: #4870e3;
-            color: white;
-            border-radius: 17px;
-            overflow: hidden;
-            margin-top: 10px;
-        }
-
-        .item .grey_wks {
-            background-color: #cccccc;
-        }
-
-        .item .active {
-            border-radius: 17px 17px 0 0;
-        }
-
-        .item .match .team {
-            float: left;
-            width: 25%;
-            height: 110px;
-            position: relative
-        }
-
-        .item .match .team .view {
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .item .match .score {
-            float: left;
-            width: 5%;
-            line-height: 110px;
-            font-size: 20px
-        }
-
-        .item .match .content {
-            float: left;
-            width: 40%;
-            height: 110px;
-            position: relative
-        }
-
-        .item .match .content .view {
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .item .match .content .view .status {
-            width: 100px;
-            line-height: 24px;
-            background-color: #00cc66;
-            border-radius: 40px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .item .match .content .view .red {
-            background-color: #ff0000;
-        }
-
-        .item .match .content .view .grey {
-            background-color: #797979;
-        }
-
-        .item .game {
-            background-color: #ffffff;
-            display: none;
-            width: 98%;
-            margin: 0 1%;
-            border-radius: 0 0 17px 17px;
-            overflow: hidden;
-        }
-
-        .item .game .game_item {
-            position: relative;
-            width: 100%;
-            text-align: center;
-            border-bottom: 1px solid #F2F2F2;
-            overflow: hidden;
-            height: 100px;
-        }
-
-        .item .game .game_item .head_name {
-            width: 100%;
-            height: 45px;
-            line-height: 45px;
-            font-size: 14px;
-            padding-top: 10px;
-        }
-
-        .item .game .game_item .head_name .text {
-            background-color: #4870e3;
-            border-radius: 15px;
-            padding: 3px 15px;
-            color: white;
-            height: 22px;
-            line-height: 18px;
-            width: 180px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .item .game .game_item .xiazhu_view {
-            float: left;
-            height: 40px;
-            font-size: 10px;
-            text-align: center;
-            box-sizing: border-box;
-            width: 50px;
-        }
-
-        .item .game .game_item .xiazhu_view .xiazhu_btn {
-            width: 40px;
-            float: left;
-            line-height: 40px;
-            height: 40px;
-            border-radius: 20px;
-            background-color: #797979;
-            color: white;
-            font-size: 15px;
-        }
-        .item .game .game_item .xiazhu_view .team_name {
-            height: 20px;
-            overflow: hidden;
-            font-size: 15px;
-        }
-
-        .item .game .game_item .xiazhu_view .btn_green {
-
-            background-color: #669933;
-        }
-
         .header {
             position: fixed;
             z-index: 60;
@@ -203,17 +64,185 @@
             float: left;
             width: 25%
         }
+        .app{
+            background-color: #f2f2f2;max-width: 700px;margin-left: auto;
+            margin-right: auto;position: relative;overflow: auto;padding-top: 35px
+        }
+        .last_time{
+            text-align: center;color: white;padding:10px 0;background-color: #4870e3;width: 96%;
+            margin:10px 2% 0 2%;border-radius: 10px;overflow: hidden;
+            position: relative;
+        }
+
+        .match {
+            width: 96%;
+            margin: 0 2%;
+            overflow: auto;
+            line-height: 50px;
+            text-align: center;
+            box-sizing: border-box;
+            background-color: #4870e3;
+            color: white;
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .game {
+            background-color: #ffffff;
+            display: none;
+            width: 96%;
+            margin: 0 2%;
+            border-radius: 0 0 10px 10px;
+            overflow: auto;
+            padding: 10px;
+        }
+        .game .xz_button{
+            float: left;width: 21%;margin: 10px 2%;background-color: #c1c1c1;line-height: 25px;color: #2a2a2a;border-radius: 5px
+        }
+        .game .xz_button_qzh{
+            float: left;width: 16%;margin: 10px 2%;background-color: #c1c1c1;line-height: 25px;color: #2a2a2a;border-radius: 5px
+        }
+        .game .xz_button_num{
+            height: 70px;line-height: 25px;padding: 10px 0;float: right
+        }
+        .game .game_item{
+            border-bottom: 1px solid #f2f2f2;
+            overflow: auto;
+            padding: 10px;
+        }
+
     </style>
 
 </head>
 <body>
-<div class="app"
-     style="background-color: #f2f2f2;max-width: 700px;margin-left: auto;margin-right: auto;position: relative;overflow: auto;padding-top: 35px">
+<div class="app">
 
     <div class="header">
-
+        重庆时时彩
     </div>
     <div id="main_data" style="padding-bottom: 60px">
+        <div class="last_time">
+            <div>第<span id="last_time_issue"></span>期结果</div>
+            <div>
+                <table style="width: 80%;margin: 0 10%">
+                    <tr style="font-size: 40px;color: #ffe019" id="last_time_code">
+                    </tr>
+                    <tr>
+                        <td>万</td>
+                        <td>千</td>
+                        <td>百</td>
+                        <td>十</td>
+                        <td>个</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div style="text-align: center">
+            <div style="padding: 5px 10px;background-color: #4870e3;margin: 10px auto;width: 80px;border-radius: 15px;overflow: hidden;color: white">下注</div>
+        </div>
+        <div class="last_time">
+            <div>当前第<span id="now_issue"></span>期</div>
+            <div style="position: absolute;right: 5px;top: 5px;color: #ffe019" onclick="window.location.href='ssc_rule.html'">游戏规则</div>
+            <div style="padding-top: 10px">
+                &nbsp;&nbsp;&nbsp;&nbsp;还剩下
+                <span style="font-size: 40px;padding: 0 10px;color: #ffe019" id="end_time">00:00</span>
+                结束投注
+            </div>
+        </div>
+        <div style="margin-top: 10px">
+            <div class="match  active">
+                总／龙虎和
+            </div>
+            <div class="game" style="display: block;text-align: center">
+                <div class="xz_button" onclick="xiazhu('总／龙虎和','总单双','单',1,1,1.97,false)">单 1.97</div>
+                <div class="xz_button" onclick="xiazhu('总／龙虎和','总单双','单',1,2,1.97,false)">双 1.97</div>
+                <div class="xz_button" onclick="xiazhu('总／龙虎和','总大小','大',2,1,1.97,false)">大 1.97</div>
+                <div class="xz_button" onclick="xiazhu('总／龙虎和','总大小','小',2,2,1.97,false)">小 1.97</div>
+                <div class="xz_button" onclick="xiazhu('总／龙虎和','龙虎和','龙',3,1,1.97,false)">龙 1.97</div>
+                <div class="xz_button" onclick="xiazhu('总／龙虎和','龙虎和','虎',3,2,1.97,false)">虎 1.97</div>
+                <div class="xz_button" onclick="xiazhu('总／龙虎和','龙虎和','和',3,3,1.97,false)">和 9.2</div>
+            </div>
+        </div>
+        <div style="margin-top: 10px">
+            <div class="match  active">
+                单星直选
+            </div>
+            <div class="game" style="display: block;text-align: center;padding: 0">
+                <div class="game_item">
+                    <div style="line-height: 70px;width: 21%;float: left;background-color: #ffbd53;margin: 10px 2%;">万</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','万单双','单',4,1,1.97,false)">单 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','万单双','双',4,2,1.97,false)">双 1.97</div>
+                    <div class="xz_button xz_button_num" onclick="xiazhu('单星直选','万数字','',6,0,9.7,true)">猜数字<br/>9.7</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','万大小','大',5,1,1.97,false)">大 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','万大小','小',5,2,1.97,false)">小 1.97</div>
+                </div>
+                <div class="game_item">
+                    <div style="line-height: 70px;width: 21%;float: left;background-color: #ffbd53;margin: 10px 2%;">千</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','千单双','单',7,1,1.97,false)">单 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','千单双','双',7,2,1.97,false)">双 1.97</div>
+                    <div class="xz_button xz_button_num" onclick="xiazhu('单星直选','千数字','',9,0,9.7,true)">猜数字<br/>9.7</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','千大小','大',8,1,1.97,false)">大 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','千大小','小',8,2,1.97,false)">小 1.97</div>
+                </div>
+                <div class="game_item">
+                    <div style="line-height: 70px;width: 21%;float: left;background-color: #ffbd53;margin: 10px 2%;">百</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','百单双','单',10,1,1.97,false)">单 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','百单双','双',10,2,1.97,false)">双 1.97</div>
+                    <div class="xz_button xz_button_num" onclick="xiazhu('单星直选','百数字','',12,0,9.7,true)">猜数字<br/>9.7</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','百大小','大',11,1,1.97,false)">大 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','百大小','小',11,2,1.97,false)">小 1.97</div>
+                </div>
+                <div class="game_item">
+                    <div style="line-height: 70px;width: 21%;float: left;background-color: #ffbd53;margin: 10px 2%;">十</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','十单双','单',13,1,1.97,false)">单 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','十单双','双',13,2,1.97,false)">双 1.97</div>
+                    <div class="xz_button xz_button_num" onclick="xiazhu('单星直选','十数字','',15,0,9.7,true)">猜数字<br/>9.7</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','十大小','大',14,1,1.97,false)">大 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','十大小','小',14,2,1.97,false)">小 1.97</div>
+                </div>
+                <div class="game_item">
+                    <div style="line-height: 70px;width: 21%;float: left;background-color: #ffbd53;margin: 10px 2%;">个</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','个单双','单',16,1,1.97,false)">单 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','个单双','双',16,2,1.97,false)">双 1.97</div>
+                    <div class="xz_button xz_button_num" onclick="xiazhu('单星直选','个数字','',18,0,9.7,true)">猜数字<br/>9.7</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','个大小','大',17,1,1.97,false)">大 1.97</div>
+                    <div class="xz_button" onclick="xiazhu('单星直选','个大小','小',17,2,1.97,false)">小 1.97</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 10px">
+            <div class="match  active">
+                前中后
+            </div>
+            <div class="game" style="display: block;text-align: center;padding: 0">
+                <div class="game_item">
+                    <div>前三</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','前三','豹子',19,1,60,false)">豹子 60</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','前三','顺子',19,2,13,false)">顺子 13</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','前三','对子',19,3,2.8,false)">对子 2.8</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','前三','半顺',19,4,2,false)">半顺 2.0</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','前三','杂六',19,5,2.2,false)">杂六 2.2</div>
+                </div>
+                <div class="game_item">
+                    <div>中三</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','中三','豹子',20,1,60,false)">豹子 60</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','中三','顺子',20,2,13,false)">顺子 13</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','中三','对子',20,3,2.8,false)">对子 2.8</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','中三','半顺',20,4,2,false)">半顺 2.0</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','中三','杂六',20,5,2.2,false)">杂六 2.2</div>
+                </div>
+                <div class="game_item">
+                    <div>后三</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','后三','豹子',21,1,60,false)">豹子 60</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','后三','顺子',21,2,13,false)">顺子 13</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','后三','对子',21,3,2.8,false)">对子 2.8</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','后三','半顺',21,4,2,false)">半顺 2.0</div>
+                    <div class="xz_button_qzh" onclick="xiazhu('前中后','后三','杂六',21,5,2.2,false)">杂六 2.2</div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"
@@ -232,8 +261,20 @@
                     <h4 class="modal-title" style="text-align: center;color: #4870e3" id="myModalLabel">Modal title</h4>
                 </div>
                 <div class="modal-body" style="text-align: center;padding: 0;font-size: 16px;">
-                    <div style="padding-bottom: 15px">
-                        您选择是：<span id="trust"></span>
+                    <div style="padding-bottom: 15px;line-height: 35px">您选择是：<span id="trust"></span>
+                        <select id="val_code" style="display: none">
+                            <option>选择数字</option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                        </select>
                     </div>
                     <div>
                         <input type="text" id="point_val" placeholder="输入金币" style="border: 1px solid #cbcbcb"
@@ -255,15 +296,15 @@
         </div>
     </div>
     <div class="footer" style="height: 45px;text-align: center;font-size: 10px;">
-        <div class="footer_item">
-            <div><img src="imgs/竞猜1.png" style="width: 25px;margin-top: 3px"></div>
-            <div style="color: #2d59df">世界杯</div>
-        </div>
-        <a href="ssc.html" style="color: #8a8a8a">
             <div class="footer_item">
-                <div><img src="imgs/ssc_icon.png" style="width: 25px;margin-top: 3px"></div>
-                <div>时时彩</div>
+                <div><img src="imgs/ssc_icon1.png" style="width: 25px;margin-top: 3px"></div>
+                <div style="color: #2d59df">时时彩</div>
             </div>
+        <a href="ssc.html" style="color: #8a8a8a">
+        <div class="footer_item">
+            <div><img src="imgs/竞猜2.png" style="width: 25px;margin-top: 3px"></div>
+            <div>世界杯</div>
+        </div>
         </a>
         <a href="jcls.html" style="color: #8a8a8a">
             <div class="footer_item">
@@ -282,105 +323,119 @@
 
 <script src="js/main.js"></script>
 <script>
-
-    guoqi_imgs = {
-        '俄罗斯': 'imgs/guoqi/eluosi.png',
-        '沙特阿拉伯': 'imgs/guoqi/shatealabo.png',
-        '埃及': 'imgs/guoqi/aiji.png',
-        '乌拉圭': 'imgs/guoqi/wulagui.png',
-        '葡萄牙': 'imgs/guoqi/putaoya.png',
-        '西班牙': 'imgs/guoqi/xibanya.png',
-        '摩洛哥': 'imgs/guoqi/moluoge.png',
-        '伊朗': 'imgs/guoqi/yilang.png',
-        '法国': 'imgs/guoqi/faguo.png',
-        '澳大利亚': 'imgs/guoqi/aodaliya.png',
-        '秘鲁': 'imgs/guoqi/milu.png',
-        '丹麦': 'imgs/guoqi/danmai.png',
-        '阿根廷': 'imgs/guoqi/agenting.png',
-        '冰岛': 'imgs/guoqi/bingdao.png',
-        '克罗地亚': 'imgs/guoqi/keluodiya.png',
-        '尼日利亚': 'imgs/guoqi/niriliya.png',
-        '巴西': 'imgs/guoqi/baxi.png',
-        '瑞士': 'imgs/guoqi/ruishi.png',
-        '哥斯达黎加': 'imgs/guoqi/gesidalijia.png',
-        '塞尔维亚': 'imgs/guoqi/saieweiya.png',
-        '德国': 'imgs/guoqi/deguo.png',
-        '墨西哥': 'imgs/guoqi/moxige.png',
-        '瑞典': 'imgs/guoqi/ruidian.png',
-        '韩国': 'imgs/guoqi/hanguo.png',
-        '比利时': 'imgs/guoqi/bilishi.png',
-        '巴拿马': 'imgs/guoqi/banama.png',
-        '突尼斯': 'imgs/guoqi/tunisi.png',
-        '英格兰': 'imgs/guoqi/yinggelan.png',
-        '波兰': 'imgs/guoqi/bolan.png',
-        '塞内加尔': 'imgs/guoqi/saineijiae.png',
-        '哥伦比亚': 'imgs/guoqi/gelunbiya.png',
-        '日本': 'imgs/guoqi/riben.png'
-    }
-
-
-    function show_item(view) {
-        var id = $(view).attr('id')
-        var match = $('#match_' + id)
-        if (match.attr('data-show') == 'false') {
-            match.show()
-            $(view).addClass('active')
-            match.attr('data-show', 'true')
-        } else {
-            match.hide()
-            $(view).removeClass('active')
-            match.attr('data-show', 'false')
-        }
-    }
+    var par={};
+    var show_drop=false;
 
     $('#point_val').bind('input propertychange', function () {
-        $('#get_point_val').html(parseInt(parseInt($('#point_val').val().replace(/\D+/g, '')) * par['odds']))
+        //$('#get_point_val').html(Math.round((parseInt($('#point_val').val().replace(/\D+/g, '')) * par['odds'])))
+        val=(parseInt($('#point_val').val().replace(/\D+/g, '')) * par['odds']).toFixed(2)
+        $('#get_point_val').html((isNaN(val) ? '0.00' : val))
     });
 
-    data = []
-
     $(function () {
+        //xiazhu()
         $.ajax({
-            url: '/api/quiz/list',
-            type: 'get',
-            success: function (data) {
-                data = data.data
-                if (data.length > 0) {
-                    for (i = 0; i < data.length; i++) {
-                        $('#main_data').append(render.item(data[i]))
-                    }
-                }
-                peilv()
-            }
-        })
-        $.ajax({
-            url: '/api/settings/title',
-            type: 'get',
-            success: function (data) {
-                $('.header').html(data.data)
+            url:'/api/ssc/ssc.json',
+            type:'get',
+            success:function (data) {
+                par['ssc_game_id']=data.data.id
+                render(data.data)
             }
         })
     })
+
+    function render(data) {
+        $('#last_time_issue').html(data.now_issue)
+        var arr=data.now_code.split('')
+        var str=''
+        for(i=0;i<arr.length;i++){
+            str+='<td>'+arr[i]+'</td>'
+        }
+        $('#last_time_code').html(str)
+        $('#now_issue').html(data.next_issue)
+
+        var oldTime = (new Date(data.next_time.replace(/-/g,'/'))).getTime();
+        //var oldTime = (new Date('2018-07-03 16:53:00')).getTime();
+        var newTime= (new Date(data.now_time.replace(/-/g,'/'))).getTime()
+        var time=parseInt((oldTime-newTime)/1000)
+        time_countDown=(time<0 ? 0 : time-60)
+        countDown(time_countDown)
+
+    }
+    var time_countDown=0
+    function countDown(times) {
+        var day = 0,
+            hour = 0,
+            minute = 0,
+            second = 0;//时间默认值
+        if (times > 0) {
+            day = Math.floor(times / (60 * 60 * 24));
+            hour = Math.floor(times / (60 * 60)) - (day * 24);
+            minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+            second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+        }
+        if (day <= 9) day = '0' + day;
+        if (hour <= 9) hour = '0' + hour;
+        if (minute <= 9) minute = '0' + minute;
+        if (second <= 9) second = '0' + second;
+        //console.log(day+"天:"+hour+"小时："+minute+"分钟："+second+"秒");
+        $('#end_time').html(minute + ':' + second)
+        time_countDown--;
+        if (times <= 0) {
+            setTimeout(function () {
+                window.location.reload()
+            }, 90000)
+        }else{
+            setTimeout(function () {
+                countDown(time_countDown)
+            },1000)
+        }
+    }
+
+    function xiazhu(title, category, code, category_val, code_val, odds, drop) {
+        $('#myModalLabel').html(title)
+        $('#trust').html(category + ' ' + code)
+        par['odds'] = odds
+        par['code']=code_val
+        par['category']=category_val
+        $('#point_val').attr('placeholder','金币余额:'+user_info.points);
+        if(drop==true){
+            $('#val_code').show()
+        }else{
+            $('#val_code').hide()
+        }
+        show_drop=drop
+        $('#show_xiazhu').click()
+    }
 
     function order() {
         if (parseInt($('#point_val').val().replace(/\D+/g, '')) == 0 || $('#point_val').val()=='') {
             alert('请输入金币')
             return
         }
+        if(show_drop==true){
+            if($('#val_code').val()=='选择数字'){
+                alert('请选择数字')
+                return
+            }else{
+                par['code']=$('#val_code').val()
+            }
+        }
         $.ajax({
-            url: '/api/quiz/buy.json',
+            url: '/api/ssc/order.json',
             type: 'post',
             data: {
                 order: {
-                    game_id: par['matchid'],
-                    team: par['winerid'],
+                    code: par['code'],
+                    category: par['category'],
+                    ssc_game_id: par['ssc_game_id'],
                     point: parseInt($('#point_val').val().replace(/\D+/g, ''))
                 }
             },
             success: function (data) {
                 if (data.code == 0) {
                     alert('下注成功')
-                    window.location.href='jcls.html'
+                    history.go(0)
                 } else {
                     alert(data.msg)
                     if (data.code == 2) {
@@ -389,187 +444,6 @@
                 }
             }
         })
-        console.log(par)
-    }
-
-    var par = {}
-
-    function xiazhu(matchid, winer, matchname, winerid, odds) {
-        par['matchid'] = matchid
-        par['winerid'] = winerid
-        par['matchname'] = matchname
-        par['odds'] = odds;
-        par['odds'] = parseFloat($('#game_' + matchid + ' .team_' + winerid).html());
-        console.log(par);
-        $('#myModalLabel').html(matchname);
-        $('#trust').html(winer);
-        $('.modal-body input').val('');
-        $('#get_point_val').html('');
-        $('#point_val').attr('placeholder','金币余额:'+user_info.points);
-        $('#show_xiazhu').click()
-    }
-
-    function peilv() {
-        $('#game_1234 .team_1').html(Math.random().toFixed(2))
-        $('#game_1234 .team_2').html(Math.random().toFixed(2))
-        $.ajax({
-            url: '/api/quiz/odds.json',
-            type: 'get',
-            success: function (data) {
-                data = data.data
-                if (data.length > 0) {
-                    for (k = 0; k < data.length; k++) {
-                        $('#game_' + data[k].id + ' .team_1').html(data[k].odds1)
-                        $('#game_' + data[k].id + ' .team_2').html(data[k].odds2)
-                        $('#game_' + data[k].id + ' .team_3').html(data[k].odds3)
-                    }
-                }
-
-                setTimeout(function () {
-                    peilv()
-                }, 10000)
-            }
-        })
-    }
-    var date = ''
-    var render = {
-        item: function (data) {
-            str = ''
-            if (data.date != date) {
-                str += '<div class="date" >' + data.date + '</div>'
-                date = data.date
-            }
-            str += '<div class="item"> <div class="match '
-            if (data.status == 0) {
-                str += 'grey_wks'
-            }
-            str += '" id="' + data.id + '" onclick="show_item(this)">\
-                <div class="team"> <div class="view"> \
-                <img src="' + (guoqi_imgs[data.team1] || 'imgs/zhudui.png') + '" style="width: 60%;max-width: 80px"> \
-                <div>' + data.team1 + '</div> </div> </div><div class="score score1">' + data.score1 + '</div> <div class="content">\
-                <div class="view"> <div style="line-height: 45px;font-size: 16px">' + data.name + '</div> '
-            switch (data.status) {
-                case 0: {
-                    str += '<div class="status grey">未开始</div> ';
-                    break
-                }
-                case 1: {
-                    str += '<div class="status">可竞猜</div> ';
-                    break
-                }
-                case 2: {
-                    str += '<div class="status red">进行中</div> ';
-                    break
-                }
-                case 3: {
-                    str += '<div class="status red">已结束</div> ';
-                    break
-                }
-            }
-            str += '<div style="font-size: 10px;line-height: 30px">' + data.time + ' 开球</div>\
-            </div> </div> <div class="score score2">' + data.score2 + '</div> <div class="team"> <div class="view">\
-                <img src="' + (guoqi_imgs[data.team2] || 'imgs/kedui.png') + '" style="width: 60%;max-width: 80px">\
-                <div>' + data.team2 + '</div> </div> </div> </div> <div id="match_' + data.id + '" class="game" data-show="false">'
-            if (data.games.length > 0) {
-                for (var j = 0; j < data.games.length; j++) {
-                    str += render.game(data.games[j], data.status)
-                }
-            }
-            str += '</div> </div> '
-            return str
-        },
-        game: function (data, status) {
-            str = ' <div id="game_' + data.id + '" class="game_item"> '
-            str += ' <div class="head_name"><div class="text">' + data.name + '</div></div> '
-            if (data.category == 3) {
-                //3种结果情况
-                str += '<div class="xiazhu_view" style="width: 33.3333%;">\
-                    <div style="width: 60%;float: left;line-height: 20px">\
-                    <div style="float: right;padding-right: 10px">\
-                    <div class="team_name">' + data.name1 + '</div>\
-                    <div style="line-height: 30px;">赔率<span class="team_1">' + data.odds1 + '</span></div></div></div>\
-                    <div class="xiazhu_btn'
-                if (status == 1) {
-                    str += ' btn_green" onclick="xiazhu(\'' + data.id + '\',\'' + data.name1 + '\',\'' + data.name + '\',1,' + data.odds1 + ')'
-                }else if(status==0){
-                    str+='" onclick="alert(\'比赛未开始\')'
-                }else if(status==2){
-                    str+='" onclick="alert(\'比赛进行中，暂停下注\')'
-                }else if(status==3){
-                    str+='" onclick="alert(\'比赛已经结束\')'
-                }
-                str += '">下注 </div> </div>'
-                str += '<div class="xiazhu_view" style="width: 33.3333%;">\
-                    <div style="width: 60%;float: left;line-height: 20px">\
-                    <div style="float: right;padding-right: 10px">\
-                    <div class="team_name">' + data.name2 + '</div>\
-                    <div style="line-height: 30px">赔率<span class="team_2">' + data.odds2 + '</span></div></div></div>\
-                    <div class="xiazhu_btn'
-                if (status == 1) {
-                    str += ' btn_green" onclick="xiazhu(\'' + data.id + '\',\'' + data.name2 + '\',\'' + data.name + '\',2,' + data.odds2 + ')'
-                }else if(status==0){
-                    str+='" onclick="alert(\'比赛未开始\')'
-                }else if(status==2){
-                    str+='" onclick="alert(\'比赛进行中，暂停下注\')'
-                }else if(status==3){
-                    str+='" onclick="alert(\'比赛已经结束\')'
-                }
-                str += '">下注 </div> </div>'
-                str += '<div class="xiazhu_view" style="width: 33.3333%;">\
-                    <div style="width: 60%;float: left;line-height: 20px">\
-                    <div style="float: right;padding-right: 10px">\
-                    <div class="team_name">' + data.name3 + '</div>\
-                    <div style="line-height: 30px">赔率<span class="team_3">' + data.odds3 + '</span></div></div></div>\
-                    <div class="xiazhu_btn'
-                if (status == 1) {
-                    str += ' btn_green" onclick="xiazhu(\'' + data.id + '\',\'' + data.name3 + '\',\'' + data.name + '\',3,' + data.odds3 + ')'
-                }else if(status==0){
-                    str+='" onclick="alert(\'比赛未开始\')'
-                }else if(status==2){
-                    str+='" onclick="alert(\'比赛进行中，暂停下注\')'
-                }else if(status==3){
-                    str+='" onclick="alert(\'比赛已经结束\')'
-                }
-                str += '">下注 </div> </div>'
-            } else {
-                //2种结果情况
-                str += '<div class="xiazhu_view" style="width: 50%;">\
-                    <div style="width: 60%;float: left;line-height: 20px">\
-                    <div style="float: right;padding-right: 10px">\
-                    <div class="team_name">' + data.name1 + '</div>\
-                    <div style="line-height: 30px">赔率<span class="team_1">' + data.odds1 + '</span></div></div></div>\
-                    <div class="xiazhu_btn'
-                if (status == 1) {
-                    str += ' btn_green" onclick="xiazhu(\'' + data.id + '\',\'' + data.name1 + '\',\'' + data.name + '\',1,' + data.odds1 + ')'
-                }else if(status==0){
-                    str+='" onclick="alert(\'比赛未开始\')'
-                }else if(status==2){
-                    str+='" onclick="alert(\'比赛进行中，暂停下注\')'
-                }else if(status==3){
-                    str+='" onclick="alert(\'比赛已经结束\')'
-                }
-                str += '">下注 </div> </div>'
-                str += '<div class="xiazhu_view" style="width: 50%;">\
-                    <div style="width: 60%;float: left;line-height: 20px">\
-                    <div style="float: right;padding-right: 10px">\
-                    <div class="team_name">' + data.name2 + '</div>\
-                    <div style="line-height: 30px">赔率<span class="team_2">' + data.odds2 + '</span></div></div></div>\
-                    <div class="xiazhu_btn'
-                if (status == 1) {
-                    str += ' btn_green" onclick="xiazhu(\'' + data.id + '\',\'' + data.name2 + '\',\'' + data.name + '\',2,' + data.odds2 + ')'
-                }else if(status==0){
-                    str+='" onclick="alert(\'比赛未开始\')'
-                }else if(status==2){
-                    str+='" onclick="alert(\'比赛进行中，暂停下注\')'
-                }else if(status==3){
-                    str+='" onclick="alert(\'比赛已经结束\')'
-                }
-                str += '">下注 </div> </div>'
-            }
-
-            str += '</div>'
-            return str
-        }
     }
 </script>
 </body>
