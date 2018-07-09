@@ -109,7 +109,7 @@
         </a>
         <a href="ssc.html" style="color: #8a8a8a">
             <div class="footer_item">
-                <div><img src="imgs/竞猜2.png" style="width: 25px;margin-top: 3px"></div>
+                <div><img src="imgs/ssc_icon.png" style="width: 25px;margin-top: 3px"></div>
                 <div>时时彩</div>
             </div>
         </a>
@@ -258,12 +258,17 @@
     function fg(s) {
         var result="";
         var cs=0;
+        var arr=s.split('.')
+        s=arr[0]
         for(var i=s.length-1;i>=0;i--){
             cs++;
             result=s.charAt(i)+result;
             if(!(cs%3)&&i!=0){
                 result=","+result;
             }
+        }
+        if(arr.length>1){
+            return result+'.'+arr[1]
         }
         return result;
     }
