@@ -1,0 +1,191 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background: #f2f2f2;
+}
+
+ul {
+    list-style-type: none;
+}
+
+button {
+    background: #cccccc;
+    border-radius: 5px;
+}
+
+.top-cm {
+    background: #2d59df;
+    text-align: center;
+    font-size: 15px;
+    color: azure;
+    line-height: 30px;
+    height: 30px;
+}
+
+.top-jgjs {
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px 0px 5px 5%;
+    border-radius: 15px;
+    background: #4870e3;
+    text-align: center;
+    color: azure;
+}
+
+.top-jg-li {
+    color: #fbcf03;
+    font-size: 50px;
+    line-height: 30px;
+}
+
+.btn-an {
+    margin: 10px;
+    padding: 0px 6%;
+    border-radius: 15px;
+    background: #2d59df;
+    color: azure;
+}
+
+.shijian {
+    color: #c9e2b3;
+    font-size: 30px;
+    margin: 5%;
+}
+
+.zkj {
+    width: 90%;
+    margin: 20px auto;
+    border-radius: 15px;
+}
+
+.fkj {
+    padding: 10% 0px;
+    background: #4870e3;
+    text-align: center;
+    color: #ffffff;
+    font-size: 25px;
+}
+
+.lhh {
+    background: #ffffff;
+}
+
+.lhh button {
+    width: 100%;
+    padding: 5%;
+    margin: 15% 0px;
+}
+
+.dxzx {
+    padding: 5% 3% 0px 3%;
+    margin: 0px;
+    background: #ffffff;
+}
+
+.shuzi {
+    width: 80%;
+    background: #fbcf03;
+    font-size: 30px;
+    text-align: center;
+    line-height: 60px;
+}
+
+.dxzx li button {
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+.dxzx .col-xs-3 {
+    padding: 0px;
+}
+
+.dxzx ul {
+    padding: 0px;
+}
+
+.qzh {
+    background: #ffffff;
+    padding-left: 1%;
+}
+
+.qzh p {
+    text-align: center;
+    padding: 5%;
+}
+
+.qzh span {
+    background: #00cc66;
+    border-radius: 15px;
+    padding: 2% 13%;
+}
+
+.qzh button {
+    width: 95%;
+    font-size: 4px;
+}
+
+.qzh li {
+    padding: 0px;
+    width: 20%;
+}
+
+.zzds {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .3);
+    z-index: 999;
+}
+
+.zzsz {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .3);
+    z-index: 999;
+}
+
+.dw {
+    width: 90%;
+    position: absolute;
+    left: 5%;
+    top: 30%;
+    padding: 5% 0px;
+    text-align: center;
+    background: azure;
+    border-radius: 15px;
+}
+
+.dlb {
+    font: bold 20px arial, sans-serif;
+    color: #3606ff;
+}
+
+.gb {
+    position: absolute;
+    right: 5%;
+    top: 1%;
+    padding: 5% 0px;
+    text-align: center;
+    background: azure;
+    border-radius: 15px;
+}
+
+.dw input {
+    margin-bottom:3% ;
+}
+
+.czqd {
+    width: 30%;
+    padding: 1% 0px;
+    margin: 1% 5%;
+}
+
+.dx {
+    font: bold 20px arial, sans-serif;
+    color: #3606ff;
+}
