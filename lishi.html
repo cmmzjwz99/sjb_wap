@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/shishicai.css" rel="stylesheet" type="text/css">
+    <link href="css/lishi.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div style="max-width: 800px;margin: auto;">
+    <div class="top-cm" style="margin-bottom: 10%">
+        <p>历史结果</p>
+    </div>
+    <div class="ls">
+
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.jsonp.js"></script>
+<script>
+    var data = null;
+    $(function () {
+        $.ajax({
+            url: '/api/ssc/ssc_list.json',
+            type: 'get',
+            success: function (data) {
+                data=data.data
+                data = [
+                    {
+                        "code": "30600",
+                        "issue": "20180706054",
+                        "day": "2018-07-06",
+                        "time": "15:00:00"
+                    },
+                    {
+                        "code": "68802",
+                        "issue": "20180706053",
+                        "day": "2018-07-06",
+                        "time": "14:50:00"
+                    },
+                    {
+                        "code": "00739",
+                        "issue": "20180706052",
+                        "day": "2018-07-06",
+                        "time": "14:40:00"
+                    },
+                    {
+                        "code": "21582",
+                        "issue": "20180706051",
+                        "day": "2018-07-06",
+                        "time": "14:30:45"
+                    },
+                    {
+                        "code": "21612",
+                        "issue": "20180706050",
+                        "day": "2018-07-05",
+                        "time": "14:20:45"
+                    },
+                    {
+                        "code": "83258",
+                        "issue": "20180706049",
+                        "day": "2018-07-05",
+                        "time": "14:10:45"
+                    }
+                ]
+                var sj = '';
+                for (var i = 0; i < data.length; i++) { //遍历一下json数据
+                    if (sj != data[i].day) {
+                        var div = document.createElement("div");
+                        div.innerHTML = data[i].day;
+
+                        $(".ls")[0].appendChild(div);
+                        var xdb = document.createElement("table");
+
+                        var xd = document.createElement("tr");
+                        xd.style.backgroundColor = "#4870E3";
+                        xdb.appendChild(xd);
+                        xdb.id = data[i].day;
+                        var qs = document.createElement("td");
+                        qs.innerHTML = "期数";
+                        xd.appendChild(qs);
+
+                        var jg = document.createElement('td');
+                        jg.innerHTML = "结果";
+                        xd.appendChild(jg);
+
+                        var kjsj = document.createElement('td');
+                        kjsj.innerHTML = "开奖时间";
+                        xd.appendChild(kjsj);
+
+                        var ts = getDataRow(data[i]);
+                        xdb.appendChild(ts);
+                        $(".ls")[0].appendChild(xdb);
+                        sj = data[i].day;
+                    } else {
+                        var ts = getDataRow(data[i]);
+                        var xdb = document.getElementById(data[i].day);
+                        xdb.appendChild(ts)
+                        $(".ls")[0].appendChild(xdb);
+                    }
+                }
+            }
+        })
+    })
+
+    function getDataRow(h) {
+        var row = document.createElement('tr');
+
+        var idCell = document.createElement('td');
+        idCell.innerHTML = h.issue; //填充数据
+        row.appendChild(idCell); //加入行  ，下面类似
+
+        var nameCell = document.createElement('td');
+        nameCell.innerHTML = h.code;
+        row.appendChild(nameCell);
+
+        var pankou = document.createElement('td');
+        pankou.innerHTML = h.time;
+        row.appendChild(pankou);
+
+        row.style.backgroundColor = "#669933";
+        return row;
+    }
+</script>
+</body>
+</html>
