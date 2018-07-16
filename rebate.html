@@ -84,12 +84,12 @@
     });
     function tx() {
         $.ajax({
-            url:'/api/payments/rebate',
+            url:'/api/payments/ssc_rebate',
             type:'post',
             data:{payments:{
                 no:$("#txyh").val()+' '+$('#txzh').val()+' '+$('#skxm').val(),
                 balance:$('#txje').val(),
-                category:'反点提现'
+                category:'时时彩反点'
             }},
             success:function (data) {
                 if(data.code==0){
